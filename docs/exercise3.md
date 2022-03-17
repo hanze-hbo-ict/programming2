@@ -78,7 +78,7 @@ In this step, we are going to refactor the classes you've created in step 3 in o
 
 Create two methods in the `Reader`-class, `add_observer()` and `remove_observer()` so that we can add and remove observers. Make sure that when we create a new instance of the `Reader`, you create an empty *set* within the memory-space of the `Reader`. A call to the first method should add the given observer to this list, a call to the second call will (drumm-roll) *remove* the observer from the list if it is present. If the observer is not present in the list, make sure that nothing happens (removing a non-existent observer from this list is not a reason the crash a system)
 
-Next, add a method to `notify_observers()` to `Reader`. When called, this method needs to iterate over all the registered observers and call `update()` on each of them. Now, change the `Reader` so that the next five lines (the *stride*) are produced every five seconds (you can make use of `sleep(5000)` in order to accomplish this) and every time new data is read a call to `notify_observers()` is made.
+Next, add a method to `notify_observers()` to `Reader`. When called, this method needs to iterate over all the registered observers and call `update()` on each of them. Now, change the `Reader` so that the next five lines (the *stride*) are produced every five seconds (you can make use of `time.sleep(5)` in order to accomplish this) and every time new data is read a call to `notify_observers()` is made.
 
 ### 3b: Extending the consumers
 
