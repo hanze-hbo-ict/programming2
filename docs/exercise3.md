@@ -60,6 +60,10 @@ The first consuming class will show the *average temperature anomaly* for the co
 
 Within both classes, use consecutive calls to `get_lines()` in order to get the next stride of lines from this data-class. Stop calling this method whenever this method returns an empty string. You don't *need* to make an incremental plot with each new call to `get_lines()` (thought that would be a nice addition): it is sufficient when you repaint your visualisation every time new data gets returned.
 
+In the end, the architecture would look as follows:
+
+![Architecture after exercise 2](imgs/class-diagram.png)
+
 There are several issues with this architecture, regardsless of the way in which you provided the consuming classes with the `Reader`-objects. In the following step, we are going to decouple these classes in order to create a more robust and versatile system.
 
 ## Step 3: The observer pattern
