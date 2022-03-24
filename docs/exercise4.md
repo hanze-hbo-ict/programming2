@@ -40,7 +40,7 @@ Create two *empty* functions in `bin/summing.py` (just declare the function sign
 
 ```python
 def test_sum():
-    assert simple_sum(3,3) == 7, 'should be 6'
+    assert simple_sum(3,3) == 6, 'should be 6'
 
 def test_another_sum():
     assert multiple_sum(1,2,3,4,5) == 15
