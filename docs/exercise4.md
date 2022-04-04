@@ -56,7 +56,7 @@ In this second exercise, we create a class `DNA` in a test-driven manner. That m
 
 Out `DNA`-class will be relatively simple; it needs to be able to fulfill the following five functional requirements:
 
-1. When creating an object of type `DNA`, a string of nucleotides must be provided. This string should *only* contain the characters `A`, `C`, `T`, `G` and the total length should be a multple of three.
+1. When creating an object of type `DNA`, a string of nucleotides must be provided. This string should *only* contain the characters `A`, `C`, `T`, `G` and the total length should be a multiple of three.
 
 2. When an object of `DNA` is printed, it should print out the complete string of DNA that is stored in its memory.
 
