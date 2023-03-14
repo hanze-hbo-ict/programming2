@@ -1,34 +1,41 @@
-# Programming exercises
+# Programming 2
 
-On these pages you'll find accompanying exercises for the module Programming 2 of the master Data Science for Life Science.
+These pages provide the materials, information, and assignments for the module *Programming 2* for the Master Digital Science for Life Science.
+
+As its name suggests, this module is the follow-up of *Programming 1* and it builds on the tools and techniques that were used in that first module. It aims to make students competent in designing parallel solutions for computational problems that aren’t adequately solvable by a single computer. In order to do so, we first refresh the topics of *Programming 1*, we look some more into object life-cycle and multiple class interaction. After this, we look into the Divide and Conquer and Map Reduce algorithms, which provides us the mindset of seperating our unit of work into several sub-problems, that can be easily distributed over several machines.
+
+In the second part of this module, we will actually perform this distribution. We will talk at some length about parallelism and network operations. After that we will use systems such as Spark of Dask to run several analyses of complex data sets. We end the module by looking at best practices from sofware engineering to make our own code base better.
 
 ## Schedule and links
 
+**Part 1**
+
 weeknumber | subject(s)
 ----|----
-1 | Introduction, SOLID principles
- | static code analysis
-2 | classes and instances, methods
- | constructors and destructors
-3 | creating complex classes
-4 | dunders, testing, git
-  | test driven development
-5 | functions as parameters
- | dependency injection
-6 | code from scratch, modules
- | UML and design patterns
-7 | Lessons learned, wrap up
- | pitches
+1 | Refresh UML; SOLID; OO en design patterns
+2 | Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders
+3 | Multiple Class Interaction; modules
+4 | List Comprehensions; Generators; map-reduce
+5 | Unit of Work; Divide and Conquer algoritms
 
-## Final assignment
 
-At the end of this module, you are challenged to put the lessons learned into practice. Given the knowledge you have gained during this module, can you come up with interesting and non-trivial refactoring candidates for an existing code base? Can you describe and argue what steps would make a code-base better – in terms of maintainability, readability, flexibility, or transferability?
+**Part 2**
 
-Find a code base for your analysis. You can use your own code base from last semester, but you are also free to find one of github. Make a short description of the context in which this code base is developed, which problem it tries to solve and in what way it succeeds in doing so (if at all).
+weeknumber | subject(s)
+----|----
+1 | Network Operations; POSIX stack
+2 | Parallellisation
+3 | Slurm and Dask 1
+4 | Slurm and Dask 2
+5 | MLOps
+6 | SE4ML
+7 | wrap up
 
-Next, come up with a static code analysis in which you describe the current state of the code base. Think about the steps we took in [exercise 1](exercise1.md). After you have done this, you should be able to identify and describe certain [code smells](https://python.astrotech.io/devops/good-engineering-practice/code-smells.html). Describe these smells (in somewhat detail, including the programming code) and make suggestions for improvements.
 
-All this should return in a small report of about five to ten pages (including images and code listings). You don't have to perform the refactoring – a description will suffice.
+## Assignment
+
+During the course, students will work individually on (more or less) weekly assignments. Every week, students are given time to work on these assignments and ask formative feedback. At the end of the term, the collection of all these elaborations will form a portfolio which will be graded. Should the portfolio be considered unsufficient, specific repair-assignments will be given.
+
 
 <!-- ## Example code bases -->
 

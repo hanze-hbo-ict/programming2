@@ -30,7 +30,7 @@ span.hll{ background-color:#cc0; display:block; }
       https://github.com/dracula/highlightjs
   */
 
-    body { background-color: #1d1d1d; color:#c9c9c9; }
+    /* .wy-nav-content-wrap { background-color: #1d1d1d; color:#c9c9c9; } */
     .nav-link { color: #6c757d; }
     .bs-sidenav { background-color:#e9ecef;}
 

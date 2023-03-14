@@ -1,4 +1,4 @@
-# Exercise 2: Classes and instances
+# Week 1.2: Classes and instances
 
 ## Introduction
 

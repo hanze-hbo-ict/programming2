@@ -1,6 +1,6 @@
-# Exercise 1: Static code analysis
+# Week 1.1: Static code analysis
 
-In this exercise we are going to look at the code delivered by a student. [Download the code-basae using this link](files/exercise1.zip). Because of reasons of privacy and NDA's, we have changed the conde somewhat, so if you see any strange stuff that's probably because of that. 
+In this exercise we are going to look at the code delivered by a student. [Download the code-basae using this link](files/exercise1.zip). Because of reasons of privacy and NDA's, we have changed the code somewhat, so if you see any strange stuff that's probably because of that. 
 
 Static code analysis is meant to be done without running or even compiling the code. It can be done using techniques as `fgrep`, but also just by glancing over the code, opening files and see how they interact with each other. Different, very professional techniques exist for these kind of jobs, but for this small code-base doing stuff by hand will suffice.
 

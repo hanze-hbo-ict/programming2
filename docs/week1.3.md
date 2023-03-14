@@ -1,5 +1,5 @@
 
-# Exercise 3: Multiple Class Interaction
+# Week 1.3: Multiple Class Interaction
 
 In this exercise, we will be building a relatively complexe system that consists of serveral classes that need to coordinate certain events. In the process, we introduce the concept of asynchronicity, generators, parallellism and message queues. The central idea is that we have some data that needs to be harvested, transformed and distributed. We build this application in several more or less independent steps, in order to bring the idea home that seperation and compartmentalization are good things.
 
