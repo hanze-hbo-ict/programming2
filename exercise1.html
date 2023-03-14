@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://bartbarnard.nl/programming2/exercise1.html" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Exercise 1: Static code analysis - Programming 2</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="css/ansi-colours.css" rel="stylesheet" />
+        <link href="css/jupyter-cells.css" rel="stylesheet" />
+        <link href="css/pandas-dataframe.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercise 1: Static code analysis";
+        var mkdocs_page_input_path = "exercise1.md";
+        var mkdocs_page_url = "/programming2/exercise1.html";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> Programming 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Programming exercises</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="exercise1.html">Exercise 1: Static code analysis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-1-the-factory">Exercise 1: the factory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-2-single-reponsibility">Exercise 2: Single reponsibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-3-the-base-classes">Exercise 3: The base classes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-the-local-settings-object">4. The local settings object</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-5-class-diagram">Exercise 5. Class diagram</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise2.html">Exercise 2: Classes and instances</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise3.html">Exercise 3: Multiple Class Interaction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise4.html">Exercise 4: Test Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise5.html">Exercise 5: Dependency Injection</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Exercise 1: Static code analysis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercise-1-static-code-analysis">Exercise 1: Static code analysis<a class="headerlink" href="#exercise-1-static-code-analysis" title="Permanent link">&para;</a></h1>
+<p>In this exercise we are going to look at the code delivered by a student. <a href="files/exercise1.zip">Download the code-basae using this link</a>. Because of reasons of privacy and NDA's, we have changed the conde somewhat, so if you see any strange stuff that's probably because of that. </p>
+<p>Static code analysis is meant to be done without running or even compiling the code. It can be done using techniques as <code>fgrep</code>, but also just by glancing over the code, opening files and see how they interact with each other. Different, very professional techniques exist for these kind of jobs, but for this small code-base doing stuff by hand will suffice.</p>
+<p>In this session, we will divide the group in four to five different sub-groups. Each group will work on one the following assignments for about an hour. After that, they will present their finding is a small pitch : no powerpoint or other presentation is required, just talk about what you have found out.</p>
+<h2 id="exercise-1-the-factory">Exercise 1: the factory<a class="headerlink" href="#exercise-1-the-factory" title="Permanent link">&para;</a></h2>
+<p>The application can parse the report in two different formats as a pdf file or as a text file. In the future it could be possible that the hospitals share the information in another file format than the two which are now implemented. To extend the functionality in the feature, a parent class <code>HsmrParser</code> was created which must be extend in the implementations of the specific parsers. </p>
+<p>At the moment, two different parsers are realised, but more can be added in the future. A factory was created to get a instance of the parser based on the parser types which are defined as constants in the file <code>parserTypes.py</code> file.</p>
+<ul>
+<li>
+<p>What is a factory? </p>
+</li>
+<li>
+<p>Does the implementation of the factory method follow the <em>Interface Segregation Principle</em>?</p>
+</li>
+</ul>
+<h2 id="exercise-2-single-reponsibility">Exercise 2: Single reponsibility<a class="headerlink" href="#exercise-2-single-reponsibility" title="Permanent link">&para;</a></h2>
+<p>The application uses the CCS classifiation to extract the information from the HSMR reports. The application uses a csv file with the ccs index and the corresponded Dutch description. This information is provided by the <a href="https://www.cbs.nl/nl-nl/onze-diensten/methoden/onderzoeksomschrijvingen/aanvullende%20onderzoeksbeschrijvingen/hsmr-2016-methodological-report">CBS</a> as Microsoft Office Excel file. The nessesary data was extracted and saved as CSV file.</p>
+<p>Review the python files starting with Ccs. Are those files adhering to he single-responsibility principle: "Every class should have only one responsibility”?</p>
+<h2 id="exercise-3-the-base-classes">Exercise 3: The base classes<a class="headerlink" href="#exercise-3-the-base-classes" title="Permanent link">&para;</a></h2>
+<p>In the code several base classes are used. Can you find examples of the <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov substitution principle</a>: "Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it." Explain your answer</p>
+<h2 id="4-the-local-settings-object">4. The local settings object<a class="headerlink" href="#4-the-local-settings-object" title="Permanent link">&para;</a></h2>
+<p>A settings file was used inside the application to store the settings which can be changed over time or is user specific. For instance, the path to a temp directory is saved inside the settings file because they will be different between users. Also, specific table names of the HSMR report, API URLs, API headers are saved in this file because they can change and must be easily assessable. </p>
+<p>The Settings object is implemented as Singleton object inside the application to prevent multiple instances of the same class. It also prevents multiple unnecessary parsing of the settings file and eventually different settings when the settings are manually changed during runtime of the program. </p>
+<ul>
+<li>
+<p>Search for the Settings class. What makes this class a singleton object and is a singleton object SOLID? </p>
+</li>
+<li>
+<p>The hospital types codes are stored in a python module <code>hospital_types.py</code>. Is this a logical solution?</p>
+</li>
+<li>
+<p>Is there an alternative solution for these kind of local settings and parameters?</p>
+</li>
+</ul>
+<h2 id="exercise-5-class-diagram">Exercise 5. Class diagram<a class="headerlink" href="#exercise-5-class-diagram" title="Permanent link">&para;</a></h2>
+<p>Draw the class diagram for this program. </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="Programming exercises"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="exercise2.html" class="btn btn-neutral float-right" title="Exercise 2: Classes and instances">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Bart Barnard</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="exercise2.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="js/imgs.js" defer></script>
+      <script src="js/matjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

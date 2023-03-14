@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://bartbarnard.nl/programming2/exercise2.html" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Exercise 2: Classes and instances - Programming 2</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="css/ansi-colours.css" rel="stylesheet" />
+        <link href="css/jupyter-cells.css" rel="stylesheet" />
+        <link href="css/pandas-dataframe.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercise 2: Classes and instances";
+        var mkdocs_page_input_path = "exercise2.md";
+        var mkdocs_page_url = "/programming2/exercise2.html";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> Programming 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Programming exercises</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise1.html">Exercise 1: Static code analysis</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="exercise2.html">Exercise 2: Classes and instances</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#assignment-1-the-atom-class">Assignment 1: the Atom class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#assignment-2-the-molecule-class">Assignment 2: the Molecule class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#assignment-3-the-chloroplast-class">Assignment 3: The Chloroplast class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wrap-up">Wrap up</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise3.html">Exercise 3: Multiple Class Interaction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise4.html">Exercise 4: Test Driven Development</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exercise5.html">Exercise 5: Dependency Injection</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Exercise 2: Classes and instances</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercise-2-classes-and-instances">Exercise 2: Classes and instances<a class="headerlink" href="#exercise-2-classes-and-instances" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Photosynthesis is the process by which plants and certain algae convert light energy into chemical energy that can be stored and used to drive the organism's activities. Though different varieties of photosynthesis exist, the overall equation for the type that occurs in plants is as follows:</p>
+<p><span class="arithmatex">\(6CO_2 + 6H_2O -&gt; C_6H_{12}O_6 + 6O_2 + energy\)</span></p>
+<p>In this exercise, we are going to realise a very simple model of this process.</p>
+<h2 id="assignment-1-the-atom-class">Assignment 1: the <code>Atom</code> class<a class="headerlink" href="#assignment-1-the-atom-class" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>1a.</strong> Create a class <code>Atom</code> that is a representation of any atom in the periodic table. Make sure that when a concrete atom is instantiated, it is given its symbol, its atomic number and the number of neutrons in the core. Store those parameters in the created object.</p>
+</li>
+<li>
+<p><strong>1b.</strong> Create a method <code>proton_number</code> that returns the number of protons in the nucleus; make another method <code>mass_number</code> that returns the sum of protons and neutrons in the nucleus.</p>
+</li>
+</ul>
+<p>Isotopes are types of atoms that have the same number of atomic number but a different number of neutrons in the core. So, e.g. 'normal' hydrogen has 1 proton and 1 neutron, but it also comes in the form of deuterium (1 proton and 2 neutrons) or even tritium (1 proton and 3 neutrons).</p>
+<ul>
+<li>
+<p><strong>1c.</strong> Create a method <code>isotope</code> in the class <code>Atom</code>. When this method is called, the normal number of neutrons must be replaced by whatever number is provided to this method.</p>
+</li>
+<li>
+<p><strong>1d.</strong> We define an atom A to be <em>less</em> than another atom B if their proton number is the same (i.e. it is the same element) but the mass number of A is less than the mass number of B. Implement the methods that checks whether two isotopes of the same element are equal to each other, or less than or greater than each other.  Raise an exception when the check called with different type of elements.</p>
+</li>
+</ul>
+<p>You can use the code below to test your implementation.</p>
+<div class="highlight"><pre><span></span><code><span class="n">protium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">deuterium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">oxygen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">tritium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">tritium</span><span class="o">.</span><span class="n">isotope</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">tritium</span><span class="o">.</span><span class="n">neutrons</span> <span class="o">==</span> <span class="mi">3</span>
+<span class="k">assert</span> <span class="n">tritium</span><span class="o">.</span><span class="n">mass_number</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span>
+<span class="k">assert</span> <span class="n">protium</span> <span class="o">&lt;</span> <span class="n">deuterium</span>
+<span class="k">assert</span> <span class="n">deuterium</span> <span class="o">&lt;=</span> <span class="n">tritium</span>
+<span class="k">assert</span> <span class="n">tritium</span> <span class="o">&gt;=</span> <span class="n">protium</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">oxygen</span> <span class="o">&gt;</span> <span class="n">tritium</span><span class="p">)</span> <span class="c1"># &lt;-- this should raise an Exception</span>
+</code></pre></div>
+<h2 id="assignment-2-the-molecule-class">Assignment 2: the <code>Molecule</code> class<a class="headerlink" href="#assignment-2-the-molecule-class" title="Permanent link">&para;</a></h2>
+<p>A molecule is a neutral group of two or more atoms.</p>
+<ul>
+<li><strong>2a.</strong> Create the class <code>Molecule</code>. When creating an instance of this class, a list of tuples of two values (a <em>pair</em>) is given. The first element of this pair is the Atom-object, the second element is the number of atoms of that type that is put into the molecule. Thus, the following code snippet creates a water-molecule:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">oxygen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="n">hydrogen</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">oxygen</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong>2b.</strong> Make sure that when we print individual molecules, we get somehing resembling the correct chemical formula (you don't <em>have</em> to take the exact protocol into account). So, e.g. <code>print (water)</code> would render <code>H2O</code>. Make sure that the number 1 is omitted in the representation.</p>
+</li>
+<li>
+<p><strong>2c</strong> In our small implementation, molecules that are created can never change (they are <em>immutable</em>). However, we can <em>add</em> two molecules together in order to create a new molecule. Implement this method in the class <code>Molecule</code>. Creating molecules this way is, of course, not really possible. However, because of educational reasons we pretend that this is an ok way to work.</p>
+</li>
+</ul>
+<p>You can use the code below to test your implementation:</p>
+<div class="highlight"><pre><span></span><code><span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">carbon</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">oxygen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="n">hydrogen</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">oxygen</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+<span class="n">co2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="n">carbon</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">oxygen</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">water</span><span class="p">)</span> <span class="c1"># H2O</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">co2</span><span class="p">)</span> <span class="c1"># CO2</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">water</span> <span class="o">+</span> <span class="n">co2</span><span class="p">)</span> <span class="c1"># H2OCO2</span>
+</code></pre></div>
+<h2 id="assignment-3-the-chloroplast-class">Assignment 3: The <code>Chloroplast</code> class<a class="headerlink" href="#assignment-3-the-chloroplast-class" title="Permanent link">&para;</a></h2>
+<p>As a final assignment, we are going to make a (very, very) simplified version of the photosynthesis process; basically, we are only going to implement the formula stated above.</p>
+<ul>
+<li>
+<p><strong>3a.</strong> Create the class <code>Chloroplast</code>. When creating objects of this type, make sure two fields <code>water</code> and <code>co2</code> are initialised at value <code>0</code>.</p>
+</li>
+<li>
+<p><strong>3b.</strong> Implement the following functionality: make a methode <code>add_molecule</code> in which we can add water or carbondioxyde molecules. When we add either of them, the corresponding field is incrementend by one. When we add something else than water of carbondioxyde, a <code>ValueError</code> is raised, but the program continues to function. If nothing else happens, this method returns an empty list</p>
+</li>
+<li>
+<p><strong>3c.</strong> When we have added a total of 6 CO2-molecules and 12 H2O-molecules, we start of the photosyntheses. We decrease the fields <code>water</code> and <code>co2</code> with 6 and 12 respectively and create three new molecules: <code>C6H12O6</code>, <code>O2</code> and <code>H2O</code>. In this case, the method returns a list of tuples: 1 molecule of sugar, 6 molecules of oxygen and 6 molecules of water (as per the general formula stated above).</p>
+</li>
+<li>
+<p><strong>3d.</strong> Make sure thwat when we print this instance of chloroplast, we get an idea of how many molecules of water and co2 are already stored in it.</p>
+</li>
+</ul>
+<p>You can use the following script to check your implementation</p>
+<div class="highlight"><pre><span></span><code><span class="n">water</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="n">hydrogen</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">oxygen</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+<span class="n">co2</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="n">carbon</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">oxygen</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">])</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">Chloroplast</span><span class="p">()</span>
+<span class="n">els</span> <span class="o">=</span> <span class="p">[</span><span class="n">water</span><span class="p">,</span> <span class="n">co2</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">What molecule would you like to add?&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;[1] Water&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;[2] carbondioxyde&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Please enter your choice: &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">add_molecule</span><span class="p">(</span><span class="n">els</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">demo</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== Photosynthesis!&#39;</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">demo</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== That is not a valid choice.&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="wrap-up">Wrap up<a class="headerlink" href="#wrap-up" title="Permanent link">&para;</a></h2>
+<p>Make sure your code follows the SOLID principles. Do you see any refactoring-possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and seperated that from all the stuff that changed...?</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="exercise1.html" class="btn btn-neutral float-left" title="Exercise 1: Static code analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="exercise3.html" class="btn btn-neutral float-right" title="Exercise 3: Multiple Class Interaction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Bart Barnard</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="exercise1.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="exercise3.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="js/imgs.js" defer></script>
+      <script src="js/matjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
