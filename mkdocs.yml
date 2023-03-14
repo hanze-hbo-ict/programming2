@@ -1,4 +1,4 @@
-site_name: Programming Exercises
+site_name: Programming 2
 copyright: Bart Barnard
 site_author: Bart Barnard
 site_description: 'Exercises for the module Programming 2 of the master Data Science for Life Science'
@@ -6,7 +6,7 @@ site_url: 'https://bartbarnard.nl/programming2'
 use_directory_urls: false
 
 theme:
-  name: bootstrap4
+  name: readthedocs
   custom_dir: 'overrides'
   palette:
     primary: 'blue grey'
@@ -17,8 +17,6 @@ theme:
   include_sidebar: false
   highlightjs: true
 
-extra_css:
-  - css/extra.css
 
 markdown_extensions:
   - admonition
