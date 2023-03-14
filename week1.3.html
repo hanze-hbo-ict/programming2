@@ -3,21 +3,22 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://bartbarnard.nl/programming2/exercise3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/week1.3.html" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Exercise 3: Multiple Class Interaction - Programming 2</title>
+    <title>Week 1.3: Multiple Class Interaction - Programming 2</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="css/extra.css" rel="stylesheet" />
         <link href="css/ansi-colours.css" rel="stylesheet" />
         <link href="css/jupyter-cells.css" rel="stylesheet" />
         <link href="css/pandas-dataframe.css" rel="stylesheet" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Exercise 3: Multiple Class Interaction";
-        var mkdocs_page_input_path = "exercise3.md";
-        var mkdocs_page_url = "/programming2/exercise3.html";
+        var mkdocs_page_name = "Week 1.3: Multiple Class Interaction";
+        var mkdocs_page_input_path = "week1.3.md";
+        var mkdocs_page_url = "/programming2/week1.3.html";
       </script>
     
     <script src="js/jquery-3.6.0.min.js" defer></script>
@@ -44,19 +45,19 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="index.html">Programming exercises</a>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Programming 2</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="exercise1.html">Exercise 1: Static code analysis</a>
+                <li class="toctree-l1"><a class="reference internal" href="week1.1.html">Week 1.1: Static code analysis</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="exercise2.html">Exercise 2: Classes and instances</a>
+                <li class="toctree-l1"><a class="reference internal" href="week1.2.html">Week 1.2: Classes and instances</a>
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="exercise3.html">Exercise 3: Multiple Class Interaction</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="week1.3.html">Week 1.3: Multiple Class Interaction</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#step-1-producing-data">Step 1: Producing data</a>
         <ul>
@@ -80,11 +81,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="exercise4.html">Exercise 4: Test Driven Development</a>
+                <li class="toctree-l1"><a class="reference internal" href="week1.4.html">Week 1.4: Generators and Map-Reduce</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="exercise5.html">Exercise 5: Dependency Injection</a>
+                <li class="toctree-l1"><a class="reference internal" href="week1.5.html">Week 1.5: Divide and Conquer Algorithms</a>
                 </li>
               </ul>
       </div>
@@ -101,7 +102,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Exercise 3: Multiple Class Interaction</li>
+      <li>Week 1.3: Multiple Class Interaction</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -110,7 +111,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="exercise-3-multiple-class-interaction">Exercise 3: Multiple Class Interaction<a class="headerlink" href="#exercise-3-multiple-class-interaction" title="Permanent link">&para;</a></h1>
+                <h1 id="week-13-multiple-class-interaction">Week 1.3: Multiple Class Interaction<a class="headerlink" href="#week-13-multiple-class-interaction" title="Permanent link">&para;</a></h1>
 <p>In this exercise, we will be building a relatively complexe system that consists of serveral classes that need to coordinate certain events. In the process, we introduce the concept of asynchronicity, generators, parallellism and message queues. The central idea is that we have some data that needs to be harvested, transformed and distributed. We build this application in several more or less independent steps, in order to bring the idea home that seperation and compartmentalization are good things.</p>
 <h2 id="step-1-producing-data">Step 1: Producing data<a class="headerlink" href="#step-1-producing-data" title="Permanent link">&para;</a></h2>
 <p>Download <a href="files/dSST.csv">the file dSST.csv</a> and study its contents. This is a comma-seperated datafile consisting of the average monthly global temperature anomalies between the years 1880-2021. These temperatures are based on the GISS Surface Temperature Analysis (GISTEMP v4), an estimate of global surface temperature change. Anomalies are defined relative to a base period of 1951-1980.</p>
@@ -168,8 +169,8 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="exercise2.html" class="btn btn-neutral float-left" title="Exercise 2: Classes and instances"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="exercise4.html" class="btn btn-neutral float-right" title="Exercise 4: Test Driven Development">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="week1.2.html" class="btn btn-neutral float-left" title="Week 1.2: Classes and instances"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="week1.4.html" class="btn btn-neutral float-right" title="Week 1.4: Generators and Map-Reduce">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -193,10 +194,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="exercise2.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="week1.2.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="exercise4.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="week1.4.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Exercises for the module Programming 2 of the master Data Science for Life Science" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/week1.5.html" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Programming 2</title>
+    <title>Week 1.5: Divide and Conquer Algorithms - Programming 2</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,9 +16,9 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Programming 2";
-        var mkdocs_page_input_path = "index.md";
-        var mkdocs_page_url = "/programming2/index.html";
+        var mkdocs_page_name = "Week 1.5: Divide and Conquer Algorithms";
+        var mkdocs_page_input_path = "week1.5.md";
+        var mkdocs_page_url = "/programming2/week1.5.html";
       </script>
     
     <script src="js/jquery-3.6.0.min.js" defer></script>
@@ -44,14 +44,8 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="index.html">Programming 2</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#schedule-and-links">Schedule and links</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#assignment">Assignment</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Programming 2</a>
                 </li>
               </ul>
               <ul>
@@ -70,8 +64,12 @@
                 <li class="toctree-l1"><a class="reference internal" href="week1.4.html">Week 1.4: Generators and Map-Reduce</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.5.html">Week 1.5: Divide and Conquer Algorithms</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="week1.5.html">Week 1.5: Divide and Conquer Algorithms</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    </ul>
                 </li>
               </ul>
       </div>
@@ -88,7 +86,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Programming 2</li>
+      <li>Week 1.5: Divide and Conquer Algorithms</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -97,91 +95,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="programming-2">Programming 2<a class="headerlink" href="#programming-2" title="Permanent link">&para;</a></h1>
-<p>These pages provide the materials, information, and assignments for the module <em>Programming 2</em> for the Master Digital Science for Life Science.</p>
-<p>As its name suggests, this module is the follow-up of <em>Programming 1</em> and it builds on the tools and techniques that were used in that first module. It aims to make students competent in designing parallel solutions for computational problems that aren’t adequately solvable by a single computer. In order to do so, we first refresh the topics of <em>Programming 1</em>, we look some more into object life-cycle and multiple class interaction. After this, we look into the Divide and Conquer and Map Reduce algorithms, which provides us the mindset of seperating our unit of work into several sub-problems, that can be easily distributed over several machines.</p>
-<p>In the second part of this module, we will actually perform this distribution. We will talk at some length about parallelism and network operations. After that we will use systems such as Spark of Dask to run several analyses of complex data sets. We end the module by looking at best practices from sofware engineering to make our own code base better.</p>
-<h2 id="schedule-and-links">Schedule and links<a class="headerlink" href="#schedule-and-links" title="Permanent link">&para;</a></h2>
-<p><strong>Part 1</strong></p>
-<table>
-<thead>
-<tr>
-<th>weeknumber</th>
-<th>subject(s)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Refresh UML; SOLID; OO en design patterns</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Multiple Class Interaction; modules</td>
-</tr>
-<tr>
-<td>4</td>
-<td>List Comprehensions; Generators; map-reduce</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Unit of Work; Divide and Conquer algoritms</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Part 2</strong></p>
-<table>
-<thead>
-<tr>
-<th>weeknumber</th>
-<th>subject(s)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Network Operations; POSIX stack</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Parallellisation</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Slurm and Dask 1</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Slurm and Dask 2</td>
-</tr>
-<tr>
-<td>5</td>
-<td>MLOps</td>
-</tr>
-<tr>
-<td>6</td>
-<td>SE4ML</td>
-</tr>
-<tr>
-<td>7</td>
-<td>wrap up</td>
-</tr>
-</tbody>
-</table>
-<h2 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h2>
-<p>During the course, students will work individually on (more or less) weekly assignments. Every week, students are given time to work on these assignments and ask formative feedback. At the end of the term, the collection of all these elaborations will form a portfolio which will be graded. Should the portfolio be considered unsufficient, specific repair-assignments will be given.</p>
-<!-- ## Example code bases -->
-
-<!-- ## Example report -->
+                <h1 id="week-15-divide-and-conquer-algorithms">Week 1.5: Divide and Conquer Algorithms<a class="headerlink" href="#week-15-divide-and-conquer-algorithms" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="week1.1.html" class="btn btn-neutral float-right" title="Week 1.1: Static code analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="week1.4.html" class="btn btn-neutral float-left" title="Week 1.4: Generators and Map-Reduce"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -205,8 +125,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="week1.4.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-      <span><a href="week1.1.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -226,8 +146,3 @@
 
 </body>
 </html>
-
-<!--
-MkDocs version : 1.4.2
-Build Date UTC : 2023-03-14 12:57:25.060478+00:00
--->
