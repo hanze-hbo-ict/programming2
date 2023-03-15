@@ -34,7 +34,9 @@ weeknumber | subject(s)
 
 ## Assignment
 
-During the course, students will work individually on (more or less) weekly assignments. Every week, students are given time to work on these assignments and ask formative feedback. At the end of the term, the collection of all these elaborations will form a portfolio which will be graded. Should the portfolio be considered unsufficient, specific repair-assignments will be given.
+During the course, students will work individually on (more or less) weekly assignments. Every week, students are given time to work on these assignments and will give peer-feedback on each-other's work. Students can improve their elaboration on basis of this feedback. 
+
+At the end of the term, the collection of all these elaborations will form a portfolio which will be graded. Should the portfolio be considered unsufficient, specific repair-assignments will be given.
 
 
 <!-- ## Example code bases -->

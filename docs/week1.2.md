@@ -6,7 +6,7 @@ Photosynthesis is the process by which plants and certain algae convert light en
 
 $6CO_2 + 6H_2O -> C_6H_{12}O_6 + 6O_2 + energy$
 
-In this exercise, we are going to realise a very simple model of this process.
+In this exercise, we are going to create a very simple model of this process.
 
 ## Assignment 1: the `Atom` class
 
@@ -78,7 +78,7 @@ As a final assignment, we are going to make a (very, very) simplified version of
 
 - **3c.** When we have added a total of 6 CO2-molecules and 12 H2O-molecules, we start of the photosyntheses. We decrease the fields `water` and `co2` with 6 and 12 respectively and create three new molecules: `C6H12O6`, `O2` and `H2O`. In this case, the method returns a list of tuples: 1 molecule of sugar, 6 molecules of oxygen and 6 molecules of water (as per the general formula stated above).
 
-- **3d.** Make sure thwat when we print this instance of chloroplast, we get an idea of how many molecules of water and co2 are already stored in it.
+- **3d.** Make sure that when we print this instance of chloroplast, we get an idea of how many molecules of water and CO2 are already stored in it.
 
 You can use the following script to check your implementation
 
@@ -109,4 +109,4 @@ while (True):
 
 ## Wrap up
 
-Make sure your code follows the SOLID principles. Do you see any refactoring-possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and seperated that from all the stuff that changed...?
+Make sure your code follows the SOLID principles. Do you see any refactoring-possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and seperated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code-base.
