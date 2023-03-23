@@ -76,7 +76,7 @@ As a final assignment, we are going to make a (very, very) simplified version of
 
 - **3b.** Implement the following functionality: make a methode `add_molecule` in which we can add water or carbondioxyde molecules. When we add either of them, the corresponding field is incrementend by one. When we add something else than water of carbondioxyde, a `ValueError` is raised, but the program continues to function. If nothing else happens, this method returns an empty list
 
-- **3c.** When we have added a total of 6 CO2-molecules and 12 H2O-molecules, we start of the photosyntheses. We decrease the fields `water` and `co2` with 6 and 12 respectively and create three new molecules: `C6H12O6`, `O2` and `H2O`. In this case, the method returns a list of tuples: 1 molecule of sugar, 6 molecules of oxygen and 6 molecules of water (as per the general formula stated above).
+- **3c.** When we have added a total of 6 CO2-molecules and 12 H2O-molecules, we start of the photosyntheses. We decrease the fields `water` and `co2` with 6 and 12 respectively and create two new molecules: `C6H12O6` and `O2` (and energy, we we ignore that in this exercise). In this case, the method returns a list of tuples: 1 molecule of sugar and 6 molecules of oxygen (as per the general formula stated above).
 
 - **3d.** Make sure that when we print this instance of chloroplast, we get an idea of how many molecules of water and CO2 are already stored in it.
 
