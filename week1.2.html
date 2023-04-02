@@ -123,7 +123,7 @@
 <p><strong>1c.</strong> Create a method <code>isotope</code> in the class <code>Atom</code>. When this method is called, the normal number of neutrons must be replaced by whatever number is provided to this method.</p>
 </li>
 <li>
-<p><strong>1d.</strong> We define an atom A to be <em>less</em> than another atom B if their proton number is the same (i.e. it is the same element) but the mass number of A is less than the mass number of B. Implement the methods that checks whether two isotopes of the same element are equal to each other, or less than or greater than each other.  Raise an exception when the check called with different type of elements.</p>
+<p><strong>1d.</strong> We define an atom A to be <em>less</em> than another atom B if their proton number is the same (i.e. it is the same element) but the mass number of A is less than the mass number of B. Implement the methods that checks whether two isotopes of the same element are equal to each other, or less than or greater than each other. Raise an exception when the check is called with different types of elements.</p>
 </li>
 </ul>
 <p>You can use the code below to test your implementation.</p>
@@ -143,7 +143,7 @@
 <h2 id="assignment-2-the-molecule-class">Assignment 2: the <code>Molecule</code> class<a class="headerlink" href="#assignment-2-the-molecule-class" title="Permanent link">&para;</a></h2>
 <p>A molecule is a neutral group of two or more atoms.</p>
 <ul>
-<li><strong>2a.</strong> Create the class <code>Molecule</code>. When creating an instance of this class, a list of tuples of two values (a <em>pair</em>) is given. The first element of this pair is the Atom-object, the second element is the number of atoms of that type that is put into the molecule. Thus, the following code snippet creates a water-molecule:</li>
+<li><strong>2a.</strong> Create the class <code>Molecule</code>. When creating an instance of this class, a list of tuples of two values (a <em>pair</em>) is given. The first element of this pair is the Atom-object, and the second element is the number of atoms of that type that is put into the molecule. Thus, the following code snippet creates a water molecule:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">oxygen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
@@ -152,10 +152,10 @@
 </code></pre></div>
 <ul>
 <li>
-<p><strong>2b.</strong> Make sure that when we print individual molecules, we get somehing resembling the correct chemical formula (you don't <em>have</em> to take the exact protocol into account). So, e.g. <code>print (water)</code> would render <code>H2O</code>. Make sure that the number 1 is omitted in the representation.</p>
+<p><strong>2b.</strong> Make sure that when we print individual molecules, we get something resembling the correct chemical formula (you don't <em>have</em> to take the exact protocol into account). So, e.g. <code>print (water)</code> would render <code>H2O</code>. Make sure that the number 1 is omitted in the representation.</p>
 </li>
 <li>
-<p><strong>2c</strong> In our small implementation, molecules that are created can never change (they are <em>immutable</em>). However, we can <em>add</em> two molecules together in order to create a new molecule. Implement this method in the class <code>Molecule</code>. Creating molecules this way is, of course, not really possible. However, because of educational reasons we pretend that this is an ok way to work.</p>
+<p><strong>2c</strong> In our small implementation, molecules that are created can never change (they are <em>immutable</em>). However, we can <em>add</em> two molecules together in order to create a new molecule. Implement this method in the class <code>Molecule</code>. Creating molecules this way is, of course, not really possible. However, because of educational reasons, we pretend that this is an ok way to work.</p>
 </li>
 </ul>
 <p>You can use the code below to test your implementation:</p>
@@ -176,7 +176,7 @@
 <p><strong>3a.</strong> Create the class <code>Chloroplast</code>. When creating objects of this type, make sure two fields <code>water</code> and <code>co2</code> are initialised at value <code>0</code>.</p>
 </li>
 <li>
-<p><strong>3b.</strong> Implement the following functionality: make a methode <code>add_molecule</code> in which we can add water or carbondioxyde molecules. When we add either of them, the corresponding field is incrementend by one. When we add something else than water of carbondioxyde, a <code>ValueError</code> is raised, but the program continues to function. If nothing else happens, this method returns an empty list</p>
+<p><strong>3b.</strong> Implement the following functionality: make a method <code>add_molecule</code> in which we can add water or carbon dioxide molecules. When we add either of them, the corresponding field is incremented by one. When we add something else than water or carbon dioxide, a <code>ValueError</code> is raised, but the program continues to function. If nothing else happens, this method returns an empty list</p>
 </li>
 <li>
 <p><strong>3c.</strong> When we have added a total of 6 CO2-molecules and 12 H2O-molecules, we start of the photosyntheses. We decrease the fields <code>water</code> and <code>co2</code> with 6 and 12 respectively and create two new molecules: <code>C6H12O6</code> and <code>O2</code> (and energy, we we ignore that in this exercise). In this case, the method returns a list of tuples: 1 molecule of sugar and 6 molecules of oxygen (as per the general formula stated above).</p>
@@ -210,7 +210,7 @@
         <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== That is not a valid choice.&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="wrap-up">Wrap up<a class="headerlink" href="#wrap-up" title="Permanent link">&para;</a></h2>
-<p>Make sure your code follows the SOLID principles. Do you see any refactoring-possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and seperated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code-base.</p>
+<p>Make sure your code follows the SOLID principles. Do you see any refactoring possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and separated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code base.</p>
               
             </div>
           </div><footer>
