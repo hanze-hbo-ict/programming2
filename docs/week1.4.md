@@ -65,9 +65,10 @@ When you have completed this refactoring, commit your code to git.
 
 ### Step 3: Make use of a generator
 
-During the theoretical session, we have talked about the use of `__iter__()` and `__next__()` methods. Alas, you cannot use `yield` in a `__next__()`-method (read [this answer of SO](https://stackoverflow.com/a/49862949/10974490) to get a good idea of the difference between iterators and generators). However, we *can* organize our classes in such a way that we don't need the internal pointer to do the bookkeeping. Have a look at the demo-file `generator.py`, that you can find [using this link](files/generator.py).
+During the theoretical session, we have talked about the use of `__iter__()` and `__next__()` methods. Implement the `__iter__()` method in `Crawler` so that this creates a generator to loop over the crawled websites. Have every call to this iterator return the next crawled website. Have a look at `generator.py`, that you can find [via this link] in order to get an idea of how this is to be done.
 
-Refactor the code of `Crawler` in such a way that it makes use of a generator to keep track of the current site that needs to be crawled. If you have done this correctly, you should be able to run the same test-code as in step 2 without much difference in the output.
+Next, device test code that you can use to have only a few calls to the `__iter__()` method of the `Crawler`. You can use `zip` to accomplish this.
+
 
 ### Step 4: Come up with enhancements
 
