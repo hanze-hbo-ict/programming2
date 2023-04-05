@@ -65,7 +65,7 @@ When you have completed this refactoring, commit your code to git.
 
 ### Step 3: Make use of a generator
 
-During the theoretical session, we have talked about the use of `__iter__()` and `__next__()` methods. Implement the `__iter__()` method in `Crawler` so that this creates a generator to loop over the crawled websites. Have every call to this iterator return the next crawled website. Have a look at `generator.py`, that you can find [via this link] in order to get an idea of how this is to be done.
+During the theoretical session, we have talked about the use of `__iter__()` and `__next__()` methods. Implement the `__iter__()` method in `Crawler` so that this creates a generator to loop over the crawled websites. Have every call to this iterator return the next crawled website. Have a look at `generator.py`, that you can find [via this link](files/generator.py) in order to get an idea of how this is to be done.
 
 Next, device test code that you can use to have only a few calls to the `__iter__()` method of the `Crawler`. You can use `zip` to accomplish this.
 
