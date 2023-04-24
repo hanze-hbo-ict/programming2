@@ -221,6 +221,22 @@
 <p>Make sure your server responds with a <code>Status-Code</code> of 200 and a <code>Content-Type</code> header with value <code>application/json</code>. You can use your browser to check the results; just make sure you have the inspector tools open in order to check the headers that your server returns. Alternatively, you can use <code>curl -i</code> to achieve the same result.</p>
 <p><img alt="A request to our server in FireFox" src="imgs/browser.png" /></p>
 <h2 id="exercise-2-create-an-async-client">Exercise 2: create an async client<a class="headerlink" href="#exercise-2-create-an-async-client" title="Permanent link">&para;</a></h2>
+<p>Now, we are going to create a client that calls the end points of the server we have defined above and consumes the results. Make at least two different functions that can operate on the data – you can use <a href="week1.3.html#step-2-consuming-the-data">the same methods you have created in exercise 1.3</a>, or create another interesting metrics for this wheather data. These functions need to <em>return</em> something (like a <code>dict</code> with average temperatures, for example). </p>
+<p>Create a class <code>NetworkClient</code> that receives the base-url of the server on its initialization (most likely this will be something like <code>http://localhost:8000/data/</code>). Provide this class with a method that receives an endpoint from which to fetch the data, and a function that needs to be called when the data has been received. Make sure that this function is non-blocking (in other words, make it an <code>async def</code> and provide <code>awaits</code> where necessary). Have this method return whatever the provided function returns and use that return value in some kind of visualisation (just a dump on the command line will suffice).</p>
+<p>Finally, create list of several calls to this method and use <code>asyncio.gather</code> to run these calls. Have a look at the example code below to get an idea of the workings:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">demo_delay</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;http://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">,</span> <span class="n">print_data</span><span class="p">),</span>
+        <span class="n">demo_delay</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;http://jsonplaceholder.typicode.com/todos/2&#39;</span><span class="p">,</span> <span class="n">print_data</span><span class="p">),</span>
+        <span class="n">demo_delay</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</code></pre></div>
               
             </div>
           </div><footer>
