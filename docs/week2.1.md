@@ -67,3 +67,25 @@ Make sure your server responds with a `Status-Code` of 200 and a `Content-Type` 
 
 ## Exercise 2: create an async client
 
+Now, we are going to create a client that calls the end points of the server we have defined above and consumes the results. Make at least two different functions that can operate on the data – you can use [the same methods you have created in exercise 1.3](week1.3.md#step-2-consuming-the-data), or create another interesting metrics for this wheather data. These functions need to *return* something (like a `dict` with average temperatures, for example). 
+
+Create a class `NetworkClient` that receives the base-url of the server on its initialization (most likely this will be something like `http://localhost:8000/data/`). Provide this class with a method that receives an endpoint from which to fetch the data, and a function that needs to be called when the data has been received. Make sure that this function is non-blocking (in other words, make it an `async def` and provide `awaits` where necessary). Have this method return whatever the provided function returns and use that return value in some kind of visualisation (just a dump on the command line will suffice).
+
+Finally, create list of several calls to this method and use `asyncio.gather` to run these calls. Have a look at the example code below to get an idea of the workings:
+
+```python
+async def main():
+    tasks = [
+        demo_delay(1),
+        get_data('http://jsonplaceholder.typicode.com/todos/1', print_data),
+        demo_delay(2),
+        get_data('http://jsonplaceholder.typicode.com/todos/2', print_data),
+        demo_delay(3),
+    ]
+    await asyncio.gather(*tasks)
+
+if __name__ == '__main__':
+    asyncio.run(main())
+
+```
+
