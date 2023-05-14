@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/week2.3.html" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Week 2.3: Slurm and Dask (1) - Programming 2</title>
+    <title>Week 2.3: Dask - Programming 2</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Week 2.3: Slurm and Dask (1)";
+        var mkdocs_page_name = "Week 2.3: Dask";
         var mkdocs_page_input_path = "week2.3.md";
         var mkdocs_page_url = "/programming2/week2.3.html";
       </script>
@@ -77,9 +77,19 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="week2.3.html">Week 2.3: Slurm and Dask (1)</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="week2.3.html">Week 2.3: Dask</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#excercise-1-from-pandas-to-dask-dataframe">Excercise 1: from pandas to dask DataFrame</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-2-dask_ml">Exercise 2: Dask_ML</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-use-dask-as-a-backend">step 1: use dask as a backend</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-classify-with-dask_ml">step 2: classify with dask_ml</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -110,7 +120,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Week 2.3: Slurm and Dask (1)</li>
+      <li>Week 2.3: Dask</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -119,8 +129,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="week-23-slurm-and-dask-1">Week 2.3: Slurm and Dask (1)<a class="headerlink" href="#week-23-slurm-and-dask-1" title="Permanent link">&para;</a></h1>
+                <h1 id="week-23-dask">Week 2.3: Dask<a class="headerlink" href="#week-23-dask" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This week and the next, we are talking about <a href="https://docs.dask.org/en/stable/">Dask</a>: a flexible library for parallal computing in Python. The first part of this two-part invention we are working on our own computer; the second part we will look into methods of making use of the network to really distribute our calculations. The exercises of this week are just meant to get some hands-on experience with Dask, so the elaborations do not form part of your graded portfolio.</p>
+<p>You need to install Dask using conda or pip; have look <a href="https://docs.dask.org/en/stable/install.html">at the documentation</a> to see how that is done. Also, for the second part of this exercise we are going to work with <a href="https://ml.dask.org/install.html"><code>dask_ml</code></a>, so you can perhaps install that while you're at it. We also make use of <a href="https://scikit-learn.org/stable/index.html"><code>sklearn</code></a>, so in case you haven't done already you should install this as well.</p>
+<h2 id="excercise-1-from-pandas-to-dask-dataframe">Excercise 1: from pandas to dask DataFrame<a class="headerlink" href="#excercise-1-from-pandas-to-dask-dataframe" title="Permanent link">&para;</a></h2>
+<p>In this notebook, you will be working with the New York City Airline data. This dataset is only about 200MB, so that you can download it in a reasonable time, but <code>dask.dataframe</code> will scale to  datasets <strong>much</strong> larger than memory. Download and run the <a href="files/prep.py">prep.py-script</a>, either in a Notebook or from the command line. This little script will download ten csv-files that make up the Airline data. Have a look at one of them to get an idea of how they look. </p>
+<p>As we have demonstrated during the plenary part, you need to setup a local cluster for Dask to work with. The relevant code is repeated below. Run this code and open a browser window to the link that is will provide.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">client</span>
+</code></pre></div>
+<p>Read all the flights-data that you have just downloaded in a <a href="Dask DataFrame — Dask documentation"><code>Dask dataframe</code></a> – by convention they are called <code>ddf</code> (instead of <code>df</code> for regular Pandas <code>dataframe</code>s). You should use <code>read_csv</code> as you are used to, but this time use it on your <em>Dask</em> dataframe. What happens when you do <code>ddf.head()</code> and can you explain the difference with a regular pandas <code>dataframe</code>? Also, use <code>ddf.visualise()</code> to get an idea of what the dataframe looks like.</p>
+<p>As is explained during the plenary part, you need to call <code>compute()</code> in orde to actually <em>do</em> something with the data in your <code>ddf</code>. Some functions, such as <code>len()</code> or <code>head()</code> implicitely trigger a call to <code>compute()</code> (can you imagine why?). However, in this particular case when you call <code>ddf.tail()</code>, the system will respond with an error.</p>
+<p>Unlike <code>pandas.read_csv</code> which reads in the entire file before inferring datatypes, <code>dask.dataframe.read_csv</code> only reads in a sample from the beginning of the file (or first file if using a glob). These inferred datatypes are then enforced when reading all partitions.</p>
+<p>In this case, the datatypes inferred in the sample are incorrect. The first <code>n</code> rows have no value for <code>CRSElapsedTime</code> (which pandas infers as a <code>float</code>), and later on turn out to be strings (<code>object</code> dtype). Note that Dask gives an informative error message about the mismatch. When this happens you have a few options:</p>
+<ul>
+<li>Specify dtypes directly using the <code>dtype</code> keyword. This is the recommended solution, as it's the least error prone (better to be explicit than implicit) and also the most performant.</li>
+<li>Increase the size of the <code>sample</code> keyword (in bytes)</li>
+<li>Use <code>assume_missing</code> to make <code>dask</code> assume that columns inferred to be <code>int</code> (which don't allow missing values) are actually <code>floats</code> (which do allow missing values). In our particular case this doesn't apply.</li>
+</ul>
+<p>Use the first option and specify the correct datatypes for <code>TailNum</code>, <code>CRSElapsedTime</code> and <code>Cancelled</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ddf</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;nycflights&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;TailNum&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;CRSElapsedTime&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;Cancelled&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Now, use your pandas-knowledge to aswer the questions below. Don't forget to have the client-status-window open so that you can see what is happening. Remember you have to call <code>compute()</code> in order to actually get the results...</p>
+<ol>
+<li>In total, how many non-canceled flights were taken from each airport?</li>
+<li>What was the average departure delay from each airport?</li>
+<li>Per airport, what day of the week has the worst average departure delay?</li>
+<li>What are the busiest hours?</li>
+</ol>
+<h2 id="exercise-2-dask_ml">Exercise 2: Dask_ML<a class="headerlink" href="#exercise-2-dask_ml" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-use-dask-as-a-backend">step 1: use dask as a backend<a class="headerlink" href="#step-1-use-dask-as-a-backend" title="Permanent link">&para;</a></h3>
+<p>The second part of these exerises are about <a href="https://ml.dask.org/install.html"><code>dask_ml</code></a>. Again, this is more in order to get some hands-on experience using the library. Begin by creating a new client and opening that in a new window. </p>
+<p>We start by using <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html"><code>GridSearchCV</code></a> to determine the best parameters for a Support Vector Classifier to classify some random data. Have a look at the code below:</p>
+<div class="highlight"><pre><span></span><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span>
+              <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">],</span>
+              <span class="s2">&quot;shrinking&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]}</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                           <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
+                           <span class="n">return_train_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                           <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+<p>Scikit-learn uses <a href="http://joblib.readthedocs.io/">joblib</a> for single-machine parallelism. This lets you train most estimators (anything that accepts an <code>n_jobs</code> parameter) using all the cores of your laptop or workstation. </p>
+<p>Alternatively, Scikit-Learn can use Dask for parallelism. This lets you train those estimators using all the cores of your cluster without significantly changing your code. In that case, you have to provide the string <code>dask</code> to the method <a href="https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend">parallel_backend</a>. Again, have the client-status-window open in order to monitor the workings.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">joblib</span>
+
+<span class="k">with</span> <span class="n">joblib</span><span class="o">.</span><span class="n">parallel_backend</span><span class="p">(</span><span class="s1">&#39;dask&#39;</span><span class="p">):</span>
+    <span class="c1">#YOUR CODE HERE</span>
+</code></pre></div>
+<p>In either case, you can use the <code>cv_results_</code>-property of the trained model to investigate the best parameters for the classification (even though that is not really the purpose for this exercise). Use <code>pd.DataFrame(grid_search.cv_results_)</code> to put the results in a dataframe.</p>
+<h3 id="step-2-classify-with-dask_ml">step 2: classify with <code>dask_ml</code><a class="headerlink" href="#step-2-classify-with-dask_ml" title="Permanent link">&para;</a></h3>
+<p>In this last exercise, we will create a classifier based on a <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html">sklearn moon-dataset</a>. Download the file [<code>moons-csv](files/moons-data.csv) and load this in a pandas dataframe. Create a numpy matrix</code>X<code>on basis of the first two column of this dataframe, and a number array</code>y<code>on basis on the third. The</code>X<code>holds our data and our</code>y` the classes.</p>
+<p>Use <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split"><code>sklearn.model_selection.train_test_split()</code></a> to split the data in two seperate parts, with 80% trainings-data and 20% test-data. Make two logistic regressors, one from <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html"><code>sklearn</code></a> and one from <a href="https://ml.dask.org/modules/generated/dask_ml.linear_model.LogisticRegression.html"><code>ml_dask</code></a>. </p>
+<p>Train both of these regressors on the trainings-data and check their validity on basis of the test-data. Experiment with different values for the hyperparameters. Do you see a difference between the results? </p>
+<p>Lastly, plot a scatter-plot of the test-data including the classes (either predicted of actual).</p>
+<p><img alt="A possible outcome of the exercise" src="imgs/make_moons.png" /></p>
               
             </div>
           </div><footer>
