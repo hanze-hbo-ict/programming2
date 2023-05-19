@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/week2.4.html" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Week 2.4: Slurm and Dask (2) - Programming 2</title>
+    <title>Week 2.4: More on Dask - Programming 2</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Week 2.4: Slurm and Dask (2)";
+        var mkdocs_page_name = "Week 2.4: More on Dask";
         var mkdocs_page_input_path = "week2.4.md";
         var mkdocs_page_url = "/programming2/week2.4.html";
       </script>
@@ -81,9 +81,27 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="week2.4.html">Week 2.4: Slurm and Dask (2)</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="week2.4.html">Week 2.4: More on Dask</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-0a-get-the-data">step 0a: get the data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-0b-create-a-timing-function">step 0b: create a timing function</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-setting-a-dask-baseline">step 1: setting a dask baseline</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-avoid-object-columns">step 2: avoid object columns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-using-multiple-files">step 3: using multiple files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4a-parquet-instead-of-csv">step 4a: parquet instead of csv</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4b-use-snappy-as-a-compressor">step 4b: use snappy as a compressor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-column-pruning">step 5: column pruning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-comparison-with-pandas">step 6: comparison with pandas</a>
     </li>
     </ul>
                 </li>
@@ -110,7 +128,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Week 2.4: Slurm and Dask (2)</li>
+      <li>Week 2.4: More on Dask</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -119,8 +137,67 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="week-24-slurm-and-dask-2">Week 2.4: Slurm and Dask (2)<a class="headerlink" href="#week-24-slurm-and-dask-2" title="Permanent link">&para;</a></h1>
+                <h1 id="week-24-more-on-dask">Week 2.4: More on Dask<a class="headerlink" href="#week-24-more-on-dask" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Last week, we had our introduction on Dask. We saw how we can employ Dask to parallize our computation on large datasets. This week, we are going to look at some optimalization steps you can use to further decrease the time it takes to have your data processed.</p>
+<p>During the plenary part, we have discussed a few possible steps you can take to optimize your data and reduce the time to compute certain features. In the following exercises, we are going to use six transformations on our data and compute the time it takes for the same operation after each step. This way, we can get a nice feeling of the reduction of the computation time.</p>
+<h2 id="step-0a-get-the-data">step 0a: get the data<a class="headerlink" href="#step-0a-get-the-data" title="Permanent link">&para;</a></h2>
+<p>Download <a href="files/create_groupby_dask.py">the script <code>create_groupby_dask.py</code></a> and study its contents. You can use this script to generate large randomized datasets that contain a certain amount of groups (so that we can experiment with <code>groupby</code> in either Dask or Pandas). If you run this script in the following manner, a dataset of about fivehunderd megabytes will be create in the directory <code>test</code> (of course, you can change this directory to your liking):</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>create_groupby_dask.py<span class="w"> </span>-n<span class="w"> </span><span class="m">10000000</span><span class="w"> </span>-k<span class="w"> </span><span class="m">100</span><span class="w"> </span>-nf<span class="w"> </span><span class="m">1</span><span class="w"> </span>-dir<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>The script will create a file with a name that mirrors the setting you used in your command; so <code>test/groupby-N_10000000_K_100_file_0.csv</code> means this is a dataset with 1_000_000 records (<code>N_10000000</code>) and hunderd groups (<code>K_100</code>).</p>
+<p>Now load the data in a pandas dataframe to get an idea of its contents.</p>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;test/groupby-N_1000000_K_100_file_0.csv&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> 
+     <span class="n">id1</span>    <span class="n">id2</span>           <span class="n">id3</span>  <span class="n">id4</span>  <span class="n">id5</span>   <span class="n">id6</span>  <span class="n">v1</span>  <span class="n">v2</span>         <span class="n">v3</span>
+<span class="mi">0</span>  <span class="n">id066</span>  <span class="n">id009</span>  <span class="n">id0000005920</span>   <span class="mi">59</span>   <span class="mi">62</span>  <span class="mi">1719</span>   <span class="mi">4</span>  <span class="mi">14</span>  <span class="mf">41.904603</span>
+<span class="mi">1</span>  <span class="n">id029</span>  <span class="n">id027</span>  <span class="n">id0000003135</span>   <span class="mi">87</span>   <span class="mi">44</span>  <span class="mi">1553</span>   <span class="mi">0</span>  <span class="mi">10</span>  <span class="mf">77.563258</span>
+<span class="mi">2</span>  <span class="n">id026</span>  <span class="n">id089</span>  <span class="n">id0000008985</span>   <span class="mi">39</span>    <span class="mi">0</span>  <span class="mi">5118</span>   <span class="mi">1</span>   <span class="mi">8</span>  <span class="mf">67.640243</span>
+<span class="mi">3</span>  <span class="n">id010</span>  <span class="n">id002</span>  <span class="n">id0000005883</span>   <span class="mi">49</span>   <span class="mi">19</span>  <span class="mi">1774</span>   <span class="mi">4</span>  <span class="mi">14</span>  <span class="mf">58.275440</span>
+<span class="mi">4</span>  <span class="n">id092</span>  <span class="n">id052</span>  <span class="n">id0000003463</span>   <span class="mi">59</span>   <span class="mi">83</span>  <span class="mi">9388</span>   <span class="mi">3</span>  <span class="mi">13</span>  <span class="mf">86.269280</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> 
+</code></pre></div>
+<h2 id="step-0b-create-a-timing-function">step 0b: create a timing function<a class="headerlink" href="#step-0b-create-a-timing-function" title="Permanent link">&para;</a></h2>
+<p>As we are creating a benchmark in this exercise, we are going to perform the same operation on the dataframe (either Dask or Pandas) multiple times, in which we are only interested in the time it took to perform that operation. So, it makes sense to create a function that receives a dataframe, performs the operation and returns the time it took to finish.</p>
+<p>Create a function <code>perform_test()</code> that does exactly this. During this benchmark, we are going to group the dataframe on <code>id1</code> and sum up the values of <code>v1</code>. Note: since this function needs to be called with both a pandas dataframe and a dask dataframe, you need to take into account that the last one uses <em>lazy</em> evaluation; so if the dataframe is from dask, you need to call <code>compute()</code> in the end. Use <code>isinstance</code> to check which type of dataframe you are receiving.</p>
+<h2 id="step-1-setting-a-dask-baseline">step 1: setting a dask baseline<a class="headerlink" href="#step-1-setting-a-dask-baseline" title="Permanent link">&para;</a></h2>
+<p>Let’s run the same groupby query with Dask. We’re going to intentionally type all the columns except <code>v1</code> as object columns, which should give us a good worst case Dask performance benchmark. object columns are notoriously memory hungry and inefficient. Use <code>dask.read_csv</code> with the following dictionary for the <code>ntype</code>-parameter to load our test-dataset and change all the columns into <code>obect</code>s.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dtypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;id1&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id2&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id3&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id4&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id5&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id6&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;v1&quot;</span><span class="p">:</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;v2&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;v3&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>As you no doubt will see, this computation takes far longer than our standard pandas implementation. Now let's see if we can speed this up a little bit.</p>
+<h2 id="step-2-avoid-object-columns">step 2: avoid object columns<a class="headerlink" href="#step-2-avoid-object-columns" title="Permanent link">&para;</a></h2>
+<p>The datatype <code>object</code> is notoriously inefficient when it comes to computation and calculation. If we know the data-type of a column, it is always better to provide exactly this. </p>
+<p>We can type <code>id1</code>, <code>id2</code>, and <code>id3</code> as <a href="https://pandas.pydata.org/docs/dev/user_guide/pyarrow.html"><code>string[pyarrow]</code></a> type columns, which are way more efficient. The column <code>v3</code> seems to be a <code>float64</code> and the rest of the columns can be seen as <code>int64</code>. Change the parameter <code>dtype</code> to reflect these improvements and rerun the test. Do you see an increase in performance?</p>
+<h2 id="step-3-using-multiple-files">step 3: using multiple files<a class="headerlink" href="#step-3-using-multiple-files" title="Permanent link">&para;</a></h2>
+<p>Dask can read and write multiple files in parallel. Since parallel I/O is normally a lot faster than working with a single large file, it can make sense to split the data over multiple files. Use the <a href="https://docs.dask.org/en/stable/generated/dask.dataframe.DataFrame.repartition.html">ddf.repartition()</a> method with a <code>partition_size</code> of <code>'100MB'</code> to create several different files. </p>
+<p>Look at the <code>test</code>-directory (or whereever you have stored the files) in order to see the files this method has created. Now, use <code>read_csv</code> with a wildcard to create a dask dataframe with all these newly created files (don't forget to include the correct datatype from the previous exercise). Next, run the <code>perform_test</code> again.</p>
+<h2 id="step-4a-parquet-instead-of-csv">step 4a: parquet instead of csv<a class="headerlink" href="#step-4a-parquet-instead-of-csv" title="Permanent link">&para;</a></h2>
+<p>CSV is actually a bad data format. It is, as we say, <em>row based</em>, so it is impossible to drop certain columns while reading in the data. Columnar file formats that are stored as binary usually perform better than row-based, text file formats like CSV. Compressing the files to create smaller file sizes also helps. Read more about dast dataframes and Parquet on <a href="https://docs.dask.org/en/stable/dataframe-parquet.html">this documentation site</a>.</p>
+<p>Use <a href="https://docs.dask.org/en/stable/generated/dask.dataframe.to_parquet.html"><code>dask.to_parquet</code></a> in the same manner as you have created the several csv-files in the previous exercise. For now, use <code>compression=None</code> as a parameter. Also, use <a href="https://arrow.apache.org/docs/python/index.html"><code>pyarrow</code></a> as an engine (you might need to <code>pip install</code> this).</p>
+<p>Next, use <a href="https://docs.dask.org/en/stable/generated/dask.dataframe.read_parquet.html"><code>dask.read_parquet</code></a> to read in the parquet-files (remember to use the same engine you used when creating the files) and perform the test again.</p>
+<h2 id="step-4b-use-snappy-as-a-compressor">step 4b: use <code>snappy</code> as a compressor<a class="headerlink" href="#step-4b-use-snappy-as-a-compressor" title="Permanent link">&para;</a></h2>
+<p>Recreate the parquet-files using <a href="http://google.github.io/snappy/"><code>snappy</code></a> (which you also probably need to <code>pip install</code>: be sure to install <code>python-snappy</code>) as an engine and reperform the test. Is there an increase in the efficiency?</p>
+<h2 id="step-5-column-pruning">step 5: column pruning<a class="headerlink" href="#step-5-column-pruning" title="Permanent link">&para;</a></h2>
+<p>In contrast to csv, parquet is a columnar file format, which means you can selectively grab certain columns from the file. This is commonly referred to as <em>column pruning</em>. Column pruning isn’t possible for row based file formats like CSV. Have a look at <a href="https://docs.dask.org/en/stable/generated/dask.dataframe.read_parquet.html">the documentation for <code>dask.read_csv</code></a> to see how you can select only the columns that are relevant for our query: <code>id1</code> and <code>v1</code>. Create a new dataframe from our parquet-files with only these columns and, again, perform the test.</p>
+<h2 id="step-6-comparison-with-pandas">step 6: comparison with pandas<a class="headerlink" href="#step-6-comparison-with-pandas" title="Permanent link">&para;</a></h2>
+<p>Now, after all this work, we need to see whether dask is actually performing better than pandas. Create a dataframe on basis of the csv-file and run our <code>perform_test</code>-function. Note the time it takes to execute; is this better than, just as good as, or worse than dask...?</p>
+<p>You will probably see that pandas performs way better than dask, even with the last improvements on the data. So why go through all the hassle? You will see that when you redo the exercise with ten times as much data as the dataset that we had.</p>
+<p>Create a file with 100_000_000 records (<code>python create_groupby_dask.py -n 100000000 -k 100 -nf 1 -dir test</code>), make the necessary improvements you have gone through and benchmark pandas and dask again. If all goes well, this time you <em>will</em> see a significant improvement.</p>
               
             </div>
           </div><footer>
