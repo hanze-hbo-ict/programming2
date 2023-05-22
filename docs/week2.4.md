@@ -14,7 +14,7 @@ Download [the script `create_groupby_dask.py`](files/create_groupby_dask.py) and
 python create_groupby_dask.py -n 10000000 -k 100 -nf 1 -dir test
 ```
 
-The script will create a file with a name that mirrors the setting you used in your command; so `test/groupby-N_10000000_K_100_file_0.csv` means this is a dataset with 1_000_000 records (`N_10000000`) and hunderd groups (`K_100`).
+The script will create a file with a name that mirrors the setting you used in your command; so `test/groupby-N_10000000_K_100_file_0.csv` means this is a dataset with 10_000_000 records (`N_10000000`) and hunderd groups (`K_100`).
 
 Now load the data in a pandas dataframe to get an idea of its contents.
 
