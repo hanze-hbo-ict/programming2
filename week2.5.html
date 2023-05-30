@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/week2.5.html" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Week 2.5: MLOps - Programming 2</title>
+    <title>Week 2.5: Real world Dask - Programming 2</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Week 2.5: MLOps";
+        var mkdocs_page_name = "Week 2.5: Real world Dask";
         var mkdocs_page_input_path = "week2.5.md";
         var mkdocs_page_url = "/programming2/week2.5.html";
       </script>
@@ -85,7 +85,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="week2.5.html">Week 2.5: MLOps</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="week2.5.html">Week 2.5: Real world Dask</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
     </li>
@@ -110,7 +110,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Week 2.5: MLOps</li>
+      <li>Week 2.5: Real world Dask</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -119,8 +119,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="week-25-mlops">Week 2.5: MLOps<a class="headerlink" href="#week-25-mlops" title="Permanent link">&para;</a></h1>
+                <h1 id="week-25-real-world-dask">Week 2.5: Real world Dask<a class="headerlink" href="#week-25-real-world-dask" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The goal of this assignment is to read in a large dataset of protein annotation information and to manipulate, summarize and analyze it using Dask Dataframes.</p>
+<p>Protein annotation is a branch of bioinformatics which classifies the different parts of a protein's structure based on both sequence and functional characteristics. For instance, it recognizes structural elements like trans-membrane helices, but also particular active sites ("Serine Protease") and also signal peptides ("periplasmic membrane tag"). The holy grail of this field is to use these different annotations of parts of the protein sequence, and to combine them to predict the function of the protein as a whole, without having to carry out actual experiments in the lab.</p>
+<p>The subject is the output of the InterProScan protein annotation service <a href="http://www.ebi.ac.uk/interpro/">InterproScan online</a>, <a href="https://academic.oup.com/nar/article/49/D1/D344/5958491">NAR article</a>. Briefly, InterPROscan is a meta-annotator: it runs different protein function annotators in turn on an input amino-acid sequence FASTA file and collects the output of each, labelling them with a unique and consistent identifier – the "InterPRO number". This service is used to annotate all currently known prokaryotic (Bacteria, Archaea) genomes to investigate better methods of metagenomics sequence annotation.</p>
+<h1 id="2-deliverables">2. Deliverables<a class="headerlink" href="#2-deliverables" title="Permanent link">&para;</a></h1>
+<p>Write a script that reads in a InterPROscan output file and answers the questions below. You can test your script on the data-file that you can find at <code>/data/dataprocessing/interproscan/all_bacilli.tsv</code> file on assemblix2012 and assemblix2019. You must use the Dask Dataframe interface to read in and manipulate this file. This file contains ~4,200,000 protein annotations. </p>
+<ol>
+<li>How many distinct protein annotations are found in the dataset? I.e. how many distinc InterPRO numbers are there?</li>
+<li>How many annotations does a protein have on average?</li>
+<li>What is the most common GO Term found?</li>
+<li>What is the average size of an InterPRO feature found in the dataset?</li>
+<li>What is the top 10 most common InterPRO features?</li>
+<li>If you select InterPRO features that are almost the same size (within 90-100%) as the protein itself, what is the top10 then?</li>
+<li>If you look at those features which also have textual annotation, what is the top 10 most common word found in that annotation?</li>
+<li>And the top 10 least common?</li>
+<li>Combining your answers for Q6 and Q7, what are the 10 most commons words found for the largest InterPRO features?</li>
+<li>What is the coefficient of correlation (<span class="arithmatex">\(R^2\)</span>) between the size of the protein and the number of features found?</li>
+</ol>
+<p>Your script should output a CSV file with 3 columns:</p>
+<ol>
+<li>in the first column the question number</li>
+<li>in the second column the answer(s) to the question</li>
+<li>in the third column the output of the scheduler's physical plan (using the <code>.explain()</code> PySpark method) as a string</li>
+</ol>
+<p>NB1: Make sure you use the <code>/commons/conda</code> environment
+NB2: You can configure VSCode on your machine to connect (via ssh) to assemblix2019. This is demonstrated during the plenary part.
+NB3: Use only 16 threads maximum: <code>dask.dataframe.compute(num_workers=16)</code></p>
               
             </div>
           </div><footer>
