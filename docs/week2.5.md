@@ -31,5 +31,7 @@ Your script should output a CSV file with 3 columns:
 3. in the third column the output of the scheduler's physical plan (using the `.explain()` PySpark method) as a string
 
 NB1: Make sure you use the `/commons/conda` environment
+
 NB2: Do *not* download the file on your local machine, but work on it from the server. You can configure VSCode on your machine to connect (via ssh) to assemblix2019. 
+
 NB3: Use only 16 threads maximum: `dask.dataframe.compute(num_workers=16)`
