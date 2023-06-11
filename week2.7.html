@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://hanze-hbo-ict.github.io/programming2/week2.7.html" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Week 2.7: SE4ML (2) - Programming 2</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="css/extra.css" rel="stylesheet" />
+        <link href="css/ansi-colours.css" rel="stylesheet" />
+        <link href="css/jupyter-cells.css" rel="stylesheet" />
+        <link href="css/pandas-dataframe.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Week 2.7: SE4ML (2)";
+        var mkdocs_page_input_path = "week2.7.md";
+        var mkdocs_page_url = "/programming2/week2.7.html";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> Programming 2
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Programming 2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week1.1.html">Week 1.1: Static code analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week1.2.html">Week 1.2: Classes and instances</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week1.3.html">Week 1.3: Multiple Class Interaction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week1.4.html">Week 1.4: Generators and Map-Reduce</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week1.5.html">Week 1.5: Divide and Conquer Algorithms</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week2.1.html">Week 2.1: Network operations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week2.2.html">Week 2.2: Parallellisation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week2.3.html">Week 2.3: Dask</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week2.4.html">Week 2.4: More on Dask</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week2.5.html">Week 2.5: Real world Dask</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="week2.6.html">Week 2.6: SE4ML (1)</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="week2.7.html">Week 2.7: SE4ML (2)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-getting-and-transforming-the-data">Step 1: getting and transforming the data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-create-the-model-and-the-drawer">Step 2: create the model and the drawer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-listening-for-new-data">Step 4: listening for new data</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#technical-requirements">Technical requirements</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming 2</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Week 2.7: SE4ML (2)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="week-27-se4ml-2">Week 2.7: SE4ML (2)<a class="headerlink" href="#week-27-se4ml-2" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Last week, we discussed the problems and challenges that occur when you are working on a software project. Though the focus at the time was at relatively large scale project, with a code base the size of which you're unlikely to encounter in the domain of life sciences, it would be wise to apply the lessons learned in general software engineering in any software project.</p>
+<p>In this last assignment, you are asked to do exactly that. You are going to develop a small application with several interacting components that work independent of each other. During the development, you need to take into account all the things we talked about in this module.</p>
+<p>The application you are going to make, makes use of a <em>trained</em> machine learning model, so this assignment is kind of an integration of DS3 with Programming 2. Have a look at the general machine learning development cycle below. Though we will go through all the steps, the focus will be on steps 3, 4, 5 and 6.</p>
+<p><img alt="The general development cycle of a ML project" src="imgs/development-cycle.png" /></p>
+<h2 id="step-1-getting-and-transforming-the-data">Step 1: getting and transforming the data<a class="headerlink" href="#step-1-getting-and-transforming-the-data" title="Permanent link">&para;</a></h2>
+<p>For this exercise, we are elaborating on the anomaly detection study case that <a href="https://github.com/fenna/BFVM23DATASCNC5/blob/main/Study_Cases/Study_Case_Anomaly_Detection.ipynb">is part of the unsupervised part of DS3</a>. Head over to that notebook and study its contents. Download the dataset and perform (and <em>isolate</em>) the necessary transformations. </p>
+<p>The dataset contains sensor data from 1 April to 31 August 2018. We're going to train the model on the months April, May, and June and then use the trained model to predict the anomalies of the months July and August. Split the original dataset among these lines, so that eventually you have three files. We use the first of these to actually train the model, and then feed the second and third files to this persisted model sequentially.</p>
+<h2 id="step-2-create-the-model-and-the-drawer">Step 2: create the model and the drawer<a class="headerlink" href="#step-2-create-the-model-and-the-drawer" title="Permanent link">&para;</a></h2>
+<p>Train one of the models that is described in the notebook, or use your own realisation. Make sure you state something about its performance, in the terms we have discussed earlier. Use one of the techniques <a href="https://scikit-learn.org/stable/model_persistence.html">described on scikit-learn.org</a> to persist the model on your local file system. </p>
+<p>Study the method <code>plot_sensor_anomolies(sensor, name)</code> that you can find in the notebook. In the current setup, this method can only work if the dataframe <code>df</code> is defined within the scope of the complete notebook (so only if <code>df</code> is a <em>global variable</em>). Refactor this method so that is <em>independent</em> of any global variables (global variables are bad news in general). Also, change its functionality so that it <em>returns</em> the plot instead of displaying it.</p>
+<h2 id="step-4-listening-for-new-data">Step 4: listening for new data<a class="headerlink" href="#step-4-listening-for-new-data" title="Permanent link">&para;</a></h2>
+<p>Now that we have trained and saved our model, it is time to put it into production. For this to work, we are going to make another class that looks at a specific directory. When a new data file is uploaded to this directory, this class will load the data in that file, apply the necessary changes and use our model to predict new new values. It then saves the transformed data with the predictions in another directory and removes the original data file. </p>
+<p>Apart from saving the transformed and enriched data, it will also create images of certain sensors and save those in the <code>img</code> directory – their filename displaying both the sensor and the timestamp. Have a look at the sequence diagram below to get an idea of what is happening.</p>
+<p><img alt="The sequence diagram of the end product" src="imgs/sequence-diagram.png" /></p>
+<p>The whole process need to be logged in a log-file. A typical run will produce the following lines in this log-file:</p>
+<div class="highlight"><pre><span></span><code><span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:32<span class="w">  </span>Found<span class="w"> </span>new<span class="w"> </span>data<span class="w"> </span>file
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:32<span class="w">  </span>Loaded<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:34<span class="w">  </span>Received<span class="w"> </span>transformed<span class="w"> </span>data
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:38<span class="w">  </span>Received<span class="w"> </span>predicions
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:38<span class="w">  </span>Saving<span class="w"> </span>predictions
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:40<span class="w">  </span>Saving<span class="w"> </span>image2<span class="w"> </span><span class="m">2018</span>-07-sensor04.png
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:40<span class="w">  </span>Saving<span class="w"> </span>image2<span class="w"> </span><span class="m">2018</span>-07-sensor51.png
+<span class="m">2023</span>-06-11<span class="w"> </span><span class="m">10</span>:09:40<span class="w">  </span>Resuming<span class="w"> </span>listening
+</code></pre></div>
+<p>If the new file in the <code>input</code>-directory does not contain data that is eligable for the system, an error needs to be logged to the log-file. This should, however, not break the running of the application.</p>
+<p>Test your realisation with the two separate data files you have created – the ones containing the data for July and for August: when you put one of them in the <code>input</code>-directory, the whole cycle should start and create a new data file in the <code>output</code>-directory and a new image in the <code>img</code>-directory.</p>
+<h3 id="technical-requirements">Technical requirements<a class="headerlink" href="#technical-requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>all files and classes should be <em>independent</em> of each other: they should adhere to <a href="week1.1.html">the SOLID-principles</a>.</li>
+<li>
+<p>the application should make use of a file <code>application.json</code> in which the following settings are present:</p>
+<ul>
+<li>the location of the <code>input</code>-directory</li>
+<li>the location of the <code>output</code>-directory</li>
+<li>the location of the <code>img</code>-directory</li>
+<li>the names of the sensors that needs to be drawn</li>
+<li>the interval (in seconds) with which the <code>input</code>-directory is checked for new files </li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="week2.6.html" class="btn btn-neutral float-left" title="Week 2.6: SE4ML (1)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Bart Barnard</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="week2.6.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="js/imgs.js" defer></script>
+      <script src="js/matjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
