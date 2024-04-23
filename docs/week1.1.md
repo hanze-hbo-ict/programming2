@@ -12,25 +12,25 @@ In this exercise, we are going to create a very simple model of this process.
 
 - **1a.** Create a class `Atom` that is a representation of any atom in the periodic table. Make sure that when a concrete atom is instantiated, it is given its symbol, its atomic number and the number of neutrons in the core. Store those parameters in the created object.
 
-- **1b.** Create a method `proton_number` that returns the number of protons in the nucleus; make another method `mass_number` that returns the sum of protons and neutrons in the nucleus.
+- **1b.** Create a method `proton_number` that returns the number of protons in the nucleus; make another method `mass_number` that returns the atom's [*mass number*](https://en.wikipedia.org/wiki/Mass_number) (the sum of protons and neutrons in the nucleus).
 
-Isotopes are types of atoms that have the same number of atomic number but a different number of neutrons in the core. So, e.g. 'normal' hydrogen has 1 proton and 1 neutron, but it also comes in the form of deuterium (1 proton and 2 neutrons) or even tritium (1 proton and 3 neutrons).
+Isotopes are types of atoms that have the same number of atomic number but a different number of neutrons in the core. So, e.g. 'normal' hydrogen has 1 proton and no neutrons in its nucleus, but it also comes in the form of [deuterium](https://en.wikipedia.org/wiki/Deuterium) whose nucleus contains a neutron (so it consists of 1 proton and 1 neutron) or even [tritium](https://en.wikipedia.org/wiki/Tritium) (1 proton and 2 neutrons).
 
-- **1c.** Create a method `isotope` in the class `Atom`. When this method is called, the normal number of neutrons must be replaced by whatever number is provided to this method.
+- **1c.** Create a method `isotope` in the class `Atom`. When this method is called, the given number of neutrons must be replaced by whatever number is provided to this method (so this is an *object mutating method*).
 
 - **1d.** We define an atom A to be *less* than another atom B if their proton number is the same (i.e. it is the same element) but the mass number of A is less than the mass number of B. Implement the methods that checks whether two isotopes of the same element are equal to each other, or less than or greater than each other. Raise an exception when the check is called with different types of elements.
 
 You can use the code below to test your implementation.
 
 ```python
-protium = Atom('H', 1, 1)
-deuterium = Atom('H', 1, 2)
+protium = Atom('H', 1, 0)
+deuterium = Atom('H', 1, 1)
 oxygen = Atom('O', 8, 8)
 tritium = Atom('H', 1, 2)
-tritium.isotope(3)
+oxygen.isotope(9)
 
-assert tritium.neutrons == 3
-assert tritium.mass_number() == 4
+assert tritium.neutrons == 2
+assert tritium.mass_number() == 3
 assert protium < deuterium
 assert deuterium <= tritium
 assert tritium >= protium
@@ -57,7 +57,7 @@ water = Molecule( [ (hydrogen, 2), (oxygen, 1) ] )
 You can use the code below to test your implementation:
 
 ```python
-hydrogen = Atom('H', 1, 1)
+hydrogen = Atom('H', 1, 0)
 carbon = Atom('C', 6, 6)
 oxygen = Atom('O', 8, 8)
 
@@ -70,7 +70,7 @@ print (water + co2) # H2OCO2
 
 ## Assignment 3: The `Chloroplast` class
 
-As a final assignment, we are going to make a (very, very) simplified version of the photosynthesis process; basically, we are only going to implement the formula stated above.
+As a final assignment, we are going to make a ([very, very](https://en.wikipedia.org/wiki/Photosynthesis)) simplified version of the photosynthesis process; basically, we are only going to implement the formula stated above.
 
 - **3a.** Create the class `Chloroplast`. When creating objects of this type, make sure two fields `water` and `co2` are initialised at value `0`.
 
@@ -106,7 +106,3 @@ while (True):
     except Exception:
         print ('\n=== That is not a valid choice.')
 ```
-
-## Wrap up
-
-Make sure your code follows the SOLID principles. Do you see any refactoring possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and separated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code base.

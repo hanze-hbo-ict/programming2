@@ -46,5 +46,9 @@ The Settings object is implemented as a Singleton object inside the application 
 
 Draw the class diagram for this program. 
 
+## Wrap up
+
+Check your code for exercise 1 and make sure it follows the SOLID principles. Do you see any refactoring possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and separated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code base.
+
 
 

@@ -7,8 +7,8 @@ In this module, we look some more into object life-cycle and multiple class inte
 
 | weeknumber | subject(s)                                                                   |
 | ---------- | ---------------------------------------------------------------------------- |
-| 1          | Refresh UML; SOLID; OO en design patterns                                    |
-| 2          | Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders |
+| 1          | Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders |
+| 2          | Refresh UML; SOLID; OO en design patterns                                    |
 | 3          | List Comprehensions; Generators; map-reduce                                  |
 | 4          | Unit of Work; Divide and Conquer algoritms, parallelisation                  |
 
