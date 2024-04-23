@@ -1,8 +1,8 @@
-site_name: Programming 2
+site_name: Programming 4
 copyright: Bart Barnard
 site_author: Bart Barnard
-site_description: 'Exercises for the module Programming 2 of the master Data Science for Life Science'
-site_url: 'https://hanze-hbo-ict.github.io/programming2/'
+site_description: 'Exercises for the module Programming 4 of the master Data Science for Life Science'
+site_url: 'https://bioinf.nl/~bbarnard/programming4'
 use_directory_urls: false
 
 theme:
@@ -63,3 +63,10 @@ plugins:
   - search
   - mknotebooks:
       execute: false
+
+nav:
+  - Introduction: 'index.md'
+  - Multiple Class Interaction: 'week1.1.md'
+  - SOLID and design patterns: 'week1.2.md'
+  - List comprehensions and generators: 'week1.4.md'
+  - Parallelisation: 'week2.2.md'

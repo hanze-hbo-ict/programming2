@@ -1,50 +1,112 @@
-# Week 1.1: Static code analysis
+# Week 1: Classes and instances
 
-In this exercise we are going to look at the code delivered by a student. [Download the code-basae using this link](files/exercise1.zip). Because of reasons of privacy and NDA's, we have changed the code somewhat, so if you see any strange stuff that's probably because of that. 
+## Introduction
 
-Static code analysis is meant to be done without running or even compiling the code. It can be done using techniques as `fgrep`, but also just by glancing over the code, opening files and see how they interact with each other. Different, very professional techniques exist for these kinds of jobs, but for this small code base doing stuff by hand will suffice.
+Photosynthesis is the process by which plants and certain algae convert light energy into chemical energy that can be stored and used to drive the organism's activities. Though different varieties of photosynthesis exist, the overall equation for the type that occurs in plants is as follows:
 
-In this session, we will divide the group in five different sub-groups. Each group will work on the following assignments for about an hour and a half. After that, each sub-group will present one of the exercises in a small pitch: no PowerPoint or other presentation is required, just talk us through your findings.
+$6CO_2 + 6H_2O -> C_6H_{12}O_6 + 6O_2 + energy$
 
-## Exercise 1: The factory
+In this exercise, we are going to create a very simple model of this process.
 
-The application can parse the report in two different formats as a pdf file or as a text file. In the future, it could be possible that the hospitals share the information in another file format than the two that are currently implemented. To extend the functionality in the feature, a parent class `HsmrParser` was created which must be extended in the implementations of the specific parsers. 
+## Assignment 1: the `Atom` class
 
-At the moment, two different parsers are realised, but more can be added in the future. A factory was created to get an instance of the parser based on the parser types which are defined as constants in the file `parserTypes.py` file.
+- **1a.** Create a class `Atom` that is a representation of any atom in the periodic table. Make sure that when a concrete atom is instantiated, it is given its symbol, its atomic number and the number of neutrons in the core. Store those parameters in the created object.
 
-- What is a factory? 
+- **1b.** Create a method `proton_number` that returns the number of protons in the nucleus; make another method `mass_number` that returns the sum of protons and neutrons in the nucleus.
 
-- Does the implementation of the factory method follow the *Interface Segregation Principle*?
+Isotopes are types of atoms that have the same number of atomic number but a different number of neutrons in the core. So, e.g. 'normal' hydrogen has 1 proton and 1 neutron, but it also comes in the form of deuterium (1 proton and 2 neutrons) or even tritium (1 proton and 3 neutrons).
 
+- **1c.** Create a method `isotope` in the class `Atom`. When this method is called, the normal number of neutrons must be replaced by whatever number is provided to this method.
 
-## Exercise 2: Single reponsibility
+- **1d.** We define an atom A to be *less* than another atom B if their proton number is the same (i.e. it is the same element) but the mass number of A is less than the mass number of B. Implement the methods that checks whether two isotopes of the same element are equal to each other, or less than or greater than each other. Raise an exception when the check is called with different types of elements.
 
-The application uses the CCS classification to extract the information from the HSMR reports. The application uses a CSV file with the ccs index and the corresponding Dutch description. This information is provided by the [CBS](https://www.cbs.nl/nl-nl/onze-diensten/methoden/onderzoeksomschrijvingen/aanvullende%20onderzoeksbeschrijvingen/hsmr-2016-methodological-report) as a Microsoft Office Excel file. The necessary data was extracted and saved as a CSV file.
+You can use the code below to test your implementation.
 
-Review the python files starting with Ccs. Are those files adhering to the single-responsibility principle: "Every class should have only one responsibility”?
+```python
+protium = Atom('H', 1, 1)
+deuterium = Atom('H', 1, 2)
+oxygen = Atom('O', 8, 8)
+tritium = Atom('H', 1, 2)
+tritium.isotope(3)
 
+assert tritium.neutrons == 3
+assert tritium.mass_number() == 4
+assert protium < deuterium
+assert deuterium <= tritium
+assert tritium >= protium
+print (oxygen > tritium) # <-- this should raise an Exception
+```
 
-## Exercise 3: The base classes
+## Assignment 2: the `Molecule` class
 
-In the code, several base classes are used. Can you find examples of the [Liskov substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle): "Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it." Explain your answer.
+A molecule is a neutral group of two or more atoms.
 
+- **2a.** Create the class `Molecule`. When creating an instance of this class, a list of tuples of two values (a *pair*) is given. The first element of this pair is the Atom-object, and the second element is the number of atoms of that type that is put into the molecule. Thus, the following code snippet creates a water molecule:
 
-## Exercise 4. The local settings object
+```python
+hydrogen = Atom('H', 1, 1)
+oxygen = Atom('O', 8, 8)
 
-A settings file was used inside the application to store the settings which can be changed over time or are user-specific. For instance, the path to a temp directory is saved inside the settings file because they will be different between users. Also, specific table names of the HSMR report, API URLs, and API headers are saved in this file because they can change and must be easily assessable. 
+water = Molecule( [ (hydrogen, 2), (oxygen, 1) ] )
+```
 
-The Settings object is implemented as a Singleton object inside the application to prevent multiple instances of the same class. It also prevents multiple unnecessary parsing of the settings file and eventually different settings when the settings are manually changed during runtime of the program. 
+- **2b.** Make sure that when we print individual molecules, we get something resembling the correct chemical formula (you don't *have* to take the exact protocol into account). So, e.g. `print (water)` would render `H2O`. Make sure that the number 1 is omitted in the representation.
 
--	Search for the Settings class. What makes this class a singleton object and is a singleton object SOLID? 
+- **2c** In our small implementation, molecules that are created can never change (they are *immutable*). However, we can *add* two molecules together in order to create a new molecule. Implement this method in the class `Molecule`. Creating molecules this way is, of course, not really possible. However, because of educational reasons, we pretend that this is an ok way to work.
 
--	The hospital types codes are stored in a python module `hospital_types.py`. Is this a logical solution?
+You can use the code below to test your implementation:
 
--	Is there an alternative solution for these kinds of local settings and parameters? Please elaborate.
+```python
+hydrogen = Atom('H', 1, 1)
+carbon = Atom('C', 6, 6)
+oxygen = Atom('O', 8, 8)
 
+water = Molecule( [ (hydrogen, 2), (oxygen, 1) ] )
+co2 = Molecule( [ (carbon, 1), (oxygen, 2) ])
+print (water) # H2O
+print (co2) # CO2
+print (water + co2) # H2OCO2
+```
 
-## Exercise 5. UML Class diagram
+## Assignment 3: The `Chloroplast` class
 
-Draw the class diagram for this program. 
+As a final assignment, we are going to make a (very, very) simplified version of the photosynthesis process; basically, we are only going to implement the formula stated above.
 
+- **3a.** Create the class `Chloroplast`. When creating objects of this type, make sure two fields `water` and `co2` are initialised at value `0`.
 
+- **3b.** Implement the following functionality: make a method `add_molecule` in which we can add water or carbon dioxide molecules. When we add either of them, the corresponding field is incremented by one. When we add something else than water or carbon dioxide, a `ValueError` is raised, but the program continues to function. If nothing else happens, this method returns an empty list
 
+- **3c.** When we have added a total of 6 CO2-molecules and 12 H2O-molecules, we start of the photosyntheses. We decrease the fields `water` and `co2` with 6 and 12 respectively and create two new molecules: `C6H12O6` and `O2` (and energy, we we ignore that in this exercise). In this case, the method returns a list of tuples: 1 molecule of sugar and 6 molecules of oxygen (as per the general formula stated above).
+
+- **3d.** Make sure that when we print this instance of chloroplast, we get an idea of how many molecules of water and CO2 are already stored in it.
+
+You can use the following script to check your implementation
+
+```python
+water = Molecule( [ (hydrogen, 2), (oxygen, 1) ] )
+co2 = Molecule( [ (carbon, 1), (oxygen, 2) ])
+demo = Chloroplast()
+els = [water, co2]
+
+while (True):
+    print ('\nWhat molecule would you like to add?')
+    print ('[1] Water')
+    print ('[2] carbondioxyde')
+    print ('Please enter your choice: ', end='')
+    try:
+        choice = int(input())
+        res = demo.add_molecule(els[choice-1])
+        if (len(res)==0):
+            print (demo)
+        else:
+            print ('\n=== Photosynthesis!')
+            print (res)
+            print (demo)
+
+    except Exception:
+        print ('\n=== That is not a valid choice.')
+```
+
+## Wrap up
+
+Make sure your code follows the SOLID principles. Do you see any refactoring possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and separated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code base.

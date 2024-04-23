@@ -1,4 +1,4 @@
-# Week 1.4: Generators and Map-Reduce
+# Week 3: Generators and Map-Reduce
 
 ## Introduction
 
