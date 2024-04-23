@@ -58,8 +58,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#assignment-3-the-chloroplast-class">Assignment 3: The Chloroplast class</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#wrap-up">Wrap up</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -109,27 +107,27 @@
 <p><strong>1a.</strong> Create a class <code>Atom</code> that is a representation of any atom in the periodic table. Make sure that when a concrete atom is instantiated, it is given its symbol, its atomic number and the number of neutrons in the core. Store those parameters in the created object.</p>
 </li>
 <li>
-<p><strong>1b.</strong> Create a method <code>proton_number</code> that returns the number of protons in the nucleus; make another method <code>mass_number</code> that returns the sum of protons and neutrons in the nucleus.</p>
+<p><strong>1b.</strong> Create a method <code>proton_number</code> that returns the number of protons in the nucleus; make another method <code>mass_number</code> that returns the atom's <a href="https://en.wikipedia.org/wiki/Mass_number"><em>mass number</em></a> (the sum of protons and neutrons in the nucleus).</p>
 </li>
 </ul>
-<p>Isotopes are types of atoms that have the same number of atomic number but a different number of neutrons in the core. So, e.g. 'normal' hydrogen has 1 proton and 1 neutron, but it also comes in the form of deuterium (1 proton and 2 neutrons) or even tritium (1 proton and 3 neutrons).</p>
+<p>Isotopes are types of atoms that have the same number of atomic number but a different number of neutrons in the core. So, e.g. 'normal' hydrogen has 1 proton and no neutrons in its nucleus, but it also comes in the form of <a href="https://en.wikipedia.org/wiki/Deuterium">deuterium</a> whose nucleus contains a neutron (so it consists of 1 proton and 1 neutron) or even <a href="https://en.wikipedia.org/wiki/Tritium">tritium</a> (1 proton and 2 neutrons).</p>
 <ul>
 <li>
-<p><strong>1c.</strong> Create a method <code>isotope</code> in the class <code>Atom</code>. When this method is called, the normal number of neutrons must be replaced by whatever number is provided to this method.</p>
+<p><strong>1c.</strong> Create a method <code>isotope</code> in the class <code>Atom</code>. When this method is called, the given number of neutrons must be replaced by whatever number is provided to this method (so this is an <em>object mutating method</em>).</p>
 </li>
 <li>
 <p><strong>1d.</strong> We define an atom A to be <em>less</em> than another atom B if their proton number is the same (i.e. it is the same element) but the mass number of A is less than the mass number of B. Implement the methods that checks whether two isotopes of the same element are equal to each other, or less than or greater than each other. Raise an exception when the check is called with different types of elements.</p>
 </li>
 </ul>
 <p>You can use the code below to test your implementation.</p>
-<div class="highlight"><pre><span></span><code><span class="n">protium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">deuterium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">protium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">deuterium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">oxygen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="n">tritium</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">tritium</span><span class="o">.</span><span class="n">isotope</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">oxygen</span><span class="o">.</span><span class="n">isotope</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
 
-<span class="k">assert</span> <span class="n">tritium</span><span class="o">.</span><span class="n">neutrons</span> <span class="o">==</span> <span class="mi">3</span>
-<span class="k">assert</span> <span class="n">tritium</span><span class="o">.</span><span class="n">mass_number</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span>
+<span class="k">assert</span> <span class="n">tritium</span><span class="o">.</span><span class="n">neutrons</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">assert</span> <span class="n">tritium</span><span class="o">.</span><span class="n">mass_number</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span>
 <span class="k">assert</span> <span class="n">protium</span> <span class="o">&lt;</span> <span class="n">deuterium</span>
 <span class="k">assert</span> <span class="n">deuterium</span> <span class="o">&lt;=</span> <span class="n">tritium</span>
 <span class="k">assert</span> <span class="n">tritium</span> <span class="o">&gt;=</span> <span class="n">protium</span>
@@ -154,7 +152,7 @@
 </li>
 </ul>
 <p>You can use the code below to test your implementation:</p>
-<div class="highlight"><pre><span></span><code><span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">carbon</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">oxygen</span> <span class="o">=</span> <span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 
@@ -165,7 +163,7 @@
 <span class="nb">print</span> <span class="p">(</span><span class="n">water</span> <span class="o">+</span> <span class="n">co2</span><span class="p">)</span> <span class="c1"># H2OCO2</span>
 </code></pre></div>
 <h2 id="assignment-3-the-chloroplast-class">Assignment 3: The <code>Chloroplast</code> class<a class="headerlink" href="#assignment-3-the-chloroplast-class" title="Permanent link">&para;</a></h2>
-<p>As a final assignment, we are going to make a (very, very) simplified version of the photosynthesis process; basically, we are only going to implement the formula stated above.</p>
+<p>As a final assignment, we are going to make a (<a href="https://en.wikipedia.org/wiki/Photosynthesis">very, very</a>) simplified version of the photosynthesis process; basically, we are only going to implement the formula stated above.</p>
 <ul>
 <li>
 <p><strong>3a.</strong> Create the class <code>Chloroplast</code>. When creating objects of this type, make sure two fields <code>water</code> and <code>co2</code> are initialised at value <code>0</code>.</p>
@@ -204,8 +202,6 @@
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== That is not a valid choice.&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="wrap-up">Wrap up<a class="headerlink" href="#wrap-up" title="Permanent link">&para;</a></h2>
-<p>Make sure your code follows the SOLID principles. Do you see any refactoring possibilities? Did you use constants where possible? Have you identified all the stuff that stayed the same and separated that from all the stuff that changed...? Write a short README.md in which you state all the improvements that can be made to your code base.</p>
               
             </div>
           </div><footer>
