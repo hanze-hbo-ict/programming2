@@ -1,4 +1,4 @@
-# Week 4: Parallellisation
+# Week 3 – part 2: Parallellisation
 
 ## Introduction
 

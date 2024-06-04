@@ -1,16 +1,10 @@
-# Week 3: Generators and Map-Reduce
+# Week 3 – part 1: Generators and Map-Reduce
 
 ## Introduction
 
 This week, we are going to work with generators and [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions). During the theoretical session, we have seen how we can replace the creation of lists in a for-loop with list-comprehensions. That makes our code more readable, more maintainable, and more pythonic. We have also seen how we can make of generators and iterables to hide the exact implementation of our collection while we are iterating over it.
 
-## Exercise 1: refactoring your own code.
-
-As a warming up exercise, you are asked to replace the for-loops in your elaboration of [the exercise of last week](week1.3.md) with list comprehensions, if you have not already done that. Especially in the consuming classes, it would make sense to use list comprehensions for either the vertical or the horizontal data aggregation. Make sure you know when to use list comprehension and when to use a standard for-loop: both have their place and function in your program, and you should not use comprehensions for the sake of it.
-
- Before doing the refactoring, make sure you have pushed your current code to github. While refactoring, make sure your code keeps on working (make use of `assert` statements where possible).
-
-## Exercise 2: functions with data
+## Exercise 1: functions with data
 
 Create a function that has two parameters: one for data (you can assume this to be a list) and one for the function to be applied to that data. Let the function return a list with new values that are created by applying the function to all the values. 
 
@@ -21,7 +15,7 @@ Now enhance your function so that it can take in an arbitrary number of function
 Make use of list comprehensions in your elaboration.
 
 
-## Exercise 3: refactoring other people's code.
+## Exercise 2: refactoring other people's code.
 
 Download [the code for this exercise](files/webcrawler.py). This is a script that crawls [a website with sport clubs in the city Groningen](https://sport050.nl/sportaanbieders/alle-aanbieders/). It generates a csv-file with the url, phone-number and email-address of 414 sport clubs. Run the script for a few moments to see what it does (make sure to exit it using `CTRL-C`, otherwise it will take too long).
 
