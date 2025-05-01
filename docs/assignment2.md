@@ -1,6 +1,8 @@
-# Week 1: Classes and instances
+# Assignment 2: Classes and instances
 
 ## Introduction
+
+After the static code analysis, which checked the *reading* of code-bases, from now on we are going to focus on actually *writing* code. 
 
 Photosynthesis is the process by which plants and certain algae convert light energy into chemical energy that can be stored and used to drive the organism's activities. Though different varieties of photosynthesis exist, the overall equation for the type that occurs in plants is as follows:
 

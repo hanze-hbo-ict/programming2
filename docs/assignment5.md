@@ -1,4 +1,4 @@
-# Week 4: A complete project
+# Assignment 5: A complete project
 
 ## Introduction
 
@@ -10,7 +10,7 @@ The application you are going to make, makes use of a *trained* machine learning
 
 ## Step 1: getting and transforming the data
 
-For this exercise, we are elaborating on the anomaly detection study case that [is part of the unsupervised part of DS3](https://github.com/fenna/BFVM23DATASCNC5/blob/main/Study_Cases/Study_Case_Anomaly_Detection.ipynb). Head over to that notebook, study its contents and download the accompanying dataset.
+For this exercise, we are elaborating on the anomaly detection study case that [is part of the unsupervised part of DS3](https://github.com/fenna/BFVM23DATASCNC5/blob/main/Study_Cases/Study_Case_Anomaly_Detection.ipynb). Head over to that notebook, study its contents and download the accompanying dataset. You can also find the dataset at Kaggle: https://www.kaggle.com/datasets/nphantawee/pump-sensor-data
 
 !!! Info "Use your own dataset"
     You can also use your own dataset, but only if it fulfills the following requirements:

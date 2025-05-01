@@ -20,6 +20,7 @@ extra_css:
   - css/extra.css
 
 markdown_extensions:
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.superfences
@@ -66,8 +67,8 @@ plugins:
 
 nav:
   - Introduction: 'index.md'
-  - Multiple Class Interaction: 'week1.1.md'
-  - SOLID and design patterns: 'week1.2.md'
-  - List comprehensions and generators: 'week1.4.md'
-  - Parallelisation: 'week2.2.md'
-  - Final assignment: 'week2.7.md'
+  - 1. Static code analysis: 'assignment1.md'
+  - 2. Multiple Class Interaction: 'assignment2.md'
+  - 3. List comprehensions and generators: 'assignment3.md'
+  - 4. Parallellisation: 'assignment4.md'
+  - 5. Final assignment: 'assignment5.md'
