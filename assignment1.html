@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://bioinf.nl/~bbarnard/programming4/assignment1.html" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>1. Static code analysis - Programming 4</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/extra.css" rel="stylesheet" />
+        <link href="css/ansi-colours.css" rel="stylesheet" />
+        <link href="css/jupyter-cells.css" rel="stylesheet" />
+        <link href="css/pandas-dataframe.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. Static code analysis";
+        var mkdocs_page_input_path = "assignment1.md";
+        var mkdocs_page_url = "/~bbarnard/programming4/assignment1.html";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> Programming 4
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">1. Static code analysis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#report">Report</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-list">The list</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="assignment2.html">2. Multiple Class Interaction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="assignment3.html">3. List comprehensions and generators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="assignment4.html">4. Parallellisation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="assignment5.html">5. Final assignment</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming 4</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">1. Static code analysis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="assignment-1-static-code-analysis">Assignment 1: Static code analysis<a class="headerlink" href="#assignment-1-static-code-analysis" title="Permanent link">&para;</a></h1>
+<p>During the plenary part, we discussed the necessity of static code analysis. We looked at the ontology of Python-applications, going from functions to classes to modules to systems. We also had a look at more high-level descriptions of code, using <a href="https://c4model.com/">the c4-model</a> to describe any software system.</p>
+<p>For this assignment, you are required to write a small report on your findings of your findings on one of <a href="#the-list">the code bases listed below</a>. This report should be written in a file <code>report.md</code> in the corresponding directory (i.e. <code>assigment1/</code>). If you want to include images (which should be considered good practice), please put them in the directory <code>assignment1/imgs</code>. We suggest <a href="https://plantuml.com/">plantuml</a> to create technical images.</p>
+<h2 id="report">Report<a class="headerlink" href="#report" title="Permanent link">&para;</a></h2>
+<p>Start your analysis with a short discription of the code-base: what it does, its intended use-case and public (basically a summary of the project's <code>readme</code>-file). Also give a description of its status on github (number of PR's, issues, pulse etc.). After that, give a high-level overview of the code-base: how is the code organized, what is the architectural setup, dependencies, build strategies etc. Images such as class- or sequence-diagrams are helpful at this level.</p>
+<p>Next, give a <em>qualitative description</em> of the code-base: how many LoC, how many functions/methods/classes, how many modules/packages/namespaces, etc.</p>
+<p>After this overview, you should look in some more depth to your code-base. Run at least one static analysis tool (e.g. <code>pylint</code>, <code>flake8</code>, <code>sonarqube</code>, <code>bandit</code>, <code>cloc</code>, or a language-specific alternative). Give attention to at least the following items:</p>
+<ul>
+<li>Complexity metrics for each function/method</li>
+<li>Code smells</li>
+<li>Dead code, unused imports</li>
+<li>Security issues (if any)</li>
+</ul>
+<p>Conclude with a reflection about the project: what do you think of it, where do you see refactoring candidates and what would your advice be to the ones that made the it.</p>
+<h2 id="the-list">The list<a class="headerlink" href="#the-list" title="Permanent link">&para;</a></h2>
+<p>Here is the list of projects that you can choose from. If you have another project you would like to analyse, please discuss this with the teacher.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Language(s)</th>
+<th>Short desciption</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tldr-pages</td>
+<td>Node/Python (and a lot of markdown)</td>
+<td>Community driven collection of man-page alternatives</td>
+<td><a href="https://github.com/tldr-pages/tldr">https://github.com/tldr-pages/tldr</a></td>
+</tr>
+<tr>
+<td>httpie</td>
+<td>Python</td>
+<td>CLI: human-friendly HTTP client for the API era</td>
+<td><a href="https://github.com/httpie/cli">https://github.com/httpie/cli</a></td>
+</tr>
+<tr>
+<td>glances</td>
+<td>Python</td>
+<td>Open-source system cross-platform monitoring tool</td>
+<td><a href="https://github.com/nicolargo/glances">https://github.com/nicolargo/glances</a></td>
+</tr>
+<tr>
+<td>poetry</td>
+<td>Python</td>
+<td>Basically a dependency manager manager</td>
+<td><a href="https://github.com/python-poetry/poetry">https://github.com/python-poetry/poetry</a></td>
+</tr>
+<tr>
+<td>jq</td>
+<td>C</td>
+<td>Lightweight and flexible command-line JSON processor</td>
+<td><a href="https://github.com/stedolan/jq">https://github.com/stedolan/jq</a></td>
+</tr>
+<tr>
+<td>micromark</td>
+<td>JavaScript</td>
+<td>Yet another markdown parser</td>
+<td><a href="https://github.com/micromark/micromark">https://github.com/micromark/micromark</a></td>
+</tr>
+<tr>
+<td>fizzbuzz-enterprise-edition</td>
+<td>Java</td>
+<td>Example (parodie) of over-engineered enterprise code</td>
+<td><a href="https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition">https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition</a></td>
+</tr>
+<tr>
+<td>thefuck</td>
+<td>Python</td>
+<td>Tool to corrects errors in previous console commands</td>
+<td><a href="https://github.com/nvbn/thefuck">https://github.com/nvbn/thefuck</a></td>
+</tr>
+<tr>
+<td>jsonlint</td>
+<td>JavaScript</td>
+<td>Yet another json-linter</td>
+<td><a href="https://github.com/zaach/jsonlint">https://github.com/zaach/jsonlint</a></td>
+</tr>
+<tr>
+<td>htop</td>
+<td>C</td>
+<td>Cross-platform interactive process viewer</td>
+<td><a href="https://github.com/htop-dev/htop">https://github.com/htop-dev/htop</a></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="assignment2.html" class="btn btn-neutral float-right" title="2. Multiple Class Interaction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Bart Barnard</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="assignment2.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="js/imgs.js"></script>
+      <script src="js/matjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

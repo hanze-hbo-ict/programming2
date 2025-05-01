@@ -2,67 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/index.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-01</lastmod>
     </url>
     <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week1.1.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://bioinf.nl/~bbarnard/programming4/assignment1.html</loc>
+         <lastmod>2025-05-01</lastmod>
     </url>
     <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week1.2.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://bioinf.nl/~bbarnard/programming4/assignment2.html</loc>
+         <lastmod>2025-05-01</lastmod>
     </url>
     <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week1.3.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://bioinf.nl/~bbarnard/programming4/assignment3.html</loc>
+         <lastmod>2025-05-01</lastmod>
     </url>
     <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week1.4.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://bioinf.nl/~bbarnard/programming4/assignment4.html</loc>
+         <lastmod>2025-05-01</lastmod>
     </url>
     <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week1.5.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.1.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.2.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.3.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.4.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.5.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.6.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bioinf.nl/~bbarnard/programming4/week2.7.html</loc>
-         <lastmod>2024-04-23</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://bioinf.nl/~bbarnard/programming4/assignment5.html</loc>
+         <lastmod>2025-05-01</lastmod>
     </url>
 </urlset>

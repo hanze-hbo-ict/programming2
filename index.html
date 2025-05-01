@@ -44,27 +44,37 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="index.html">Introduction</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#assignment">Assignment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github">github</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#no-notebook">No Notebook</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#a-note-on-the-use-of-ai">A note on the use of AI</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.1.html">Multiple Class Interaction</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment1.html">1. Static code analysis</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.2.html">SOLID and design patterns</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment2.html">2. Multiple Class Interaction</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.4.html">List comprehensions and generators</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment3.html">3. List comprehensions and generators</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week2.2.html">Parallelisation</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment4.html">4. Parallellisation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="assignment5.html">5. Final assignment</a>
                 </li>
               </ul>
       </div>
@@ -92,7 +102,8 @@
               
                 <h1 id="programming-4">Programming 4<a class="headerlink" href="#programming-4" title="Permanent link">&para;</a></h1>
 <p>These pages provide the materials, information, and assignments for the module <em>Programming 4</em> for the Master Digital Science for Life Science.</p>
-<p>In this module, we look some more into object life-cycle and multiple class interaction. After this, we look into the Divide and Conquer and Map Reduce algorithms, which provides us the mindset of separating our unit of work into several sub-problems, that can be easily distributed over several machines.</p>
+<p>In this module, we focus on the interesting subject <a href=""><em>software engineering for machine learning</em></a>. We will provide some methods and techniques from the field of <em>software engineering</em> and see how we can apply those to <em>data science</em> (and, by extension, <em>life sciences</em>). We delve in quite some depth into <em>object life-cycle</em> and <em>multiple class interaction</em>, <em>generators</em> and <em>async programming</em>, <em>parallellisation</em>, and <em>design patterns</em>. </p>
+<p>Specifically, the module contains the following subjects:</p>
 <table>
 <thead>
 <tr>
@@ -103,25 +114,59 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders</td>
-</tr>
-<tr>
-<td>2</td>
 <td>Refresh UML; SOLID; OO en design patterns</td>
 </tr>
 <tr>
+<td>2</td>
+<td>Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders</td>
+</tr>
+<tr>
 <td>3</td>
-<td>List Comprehensions; Generators; map-reduce</td>
+<td>List Comprehensions; Generators; map-reduce;</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Unit of Work; Divide and Conquer algoritms, parallelisation</td>
+<td>Parallellisation and async programming</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Putting it all together</td>
 </tr>
 </tbody>
 </table>
 <h2 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h2>
 <p>During the course, students will work individually on (more or less) weekly assignments. Every week, students are given time to work on these assignments and will give peer feedback on each other's work. Students can improve their elaboration on basis of this feedback. </p>
-<p>At the end of the term, the collection of all these elaborations will form a portfolio which will be graded. Should the portfolio be considered insufficient, specific repair assignments will be given.</p>
+<p>You can find the assignments (all five of them) in the menu on the left.</p>
+<p>Make a directory for each of the assignments (<code>assignment1/</code>, <code>assignment2/</code>, you get the gist). At the end of the term, the collection of all these elaborations will form a portfolio which will be graded. Should the portfolio be considered insufficient, specific repair assignments will be given.</p>
+<h2 id="github">github<a class="headerlink" href="#github" title="Permanent link">&para;</a></h2>
+<p>For this module, the use of github is mandatory. All work must be submitted to github in an orderly fashion – having a good and consistent git workflow is part of the requirements for the grade. This includes (but is not necessarily limited to)</p>
+<ul>
+<li>Using a local and remote version of your code base</li>
+<li>Branching and merging at specific points in your developmen cycle</li>
+<li>Writing good and informative commit messages</li>
+<li>Committing often</li>
+</ul>
+<p><img alt="In case of fire" src="imgs/in-case-of-fire.jpeg" /></p>
+<h2 id="no-notebook">No Notebook<a class="headerlink" href="#no-notebook" title="Permanent link">&para;</a></h2>
+<p>Even though we are really a big fan of Jupyter Notebook, in this module use of this tool is strictly forbidden. Writing software for the future means being able to write software that is readable, maintainable and re-usable, software that is ready for production. Thought there is some tooling that makes it possible to put notebooks in production, this is not what they are meant for. The use case for Jupyter Notebooks is exploration and research and in this module we are focussing on software development.</p>
+<p><img alt="No use of Jupyter Notebook in this module" src="imgs/no-jupyter.png" /></p>
+<h2 id="a-note-on-the-use-of-ai">A note on the use of AI<a class="headerlink" href="#a-note-on-the-use-of-ai" title="Permanent link">&para;</a></h2>
+<p>We expect you to use AI (ChatGPT and image generation tools, at a minimum) in this module. Learning to use AI is an emerging skill and we will provide tutorials about how to do this in an efficient and interesting way.</p>
+<p>Be aware of the limits of ChatGPT:</p>
+<ul>
+<li>
+<p>If you provide minimum effort prompts, you will get low quality results. You will need to refine your prompts in order to get good outcomes. This will take work and practice.</p>
+</li>
+<li>
+<p>Don't believe anything it says. If it gives you facts, assume them to be wrong and make sure you check them in some other way or reference. You will be responsible for any errors or omissions provided by the tool.</p>
+</li>
+<li>
+<p>AI is a tool, but one that you need to acknowledge using. Please include a paragraph at the end of any assignment that uses AI explaining what you used the AI for and what prompts you provided it with. Have a look at <a href="https://apastyle.apa.org/blog/how-to-cite-chatgpt">this page at apa.org</a> to get an idea about how to reference to ChatGPT.</p>
+</li>
+<li>
+<p>Be thoughtful about when this tool is useful. Don't use it if it isn't appropriate for the case or for the circumstances.</p>
+</li>
+</ul>
 <!-- ## Example code bases -->
 
 <!-- ## Example report -->
@@ -129,7 +174,7 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="week1.1.html" class="btn btn-neutral float-right" title="Multiple Class Interaction">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="assignment1.html" class="btn btn-neutral float-right" title="1. Static code analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -154,7 +199,7 @@
     
     
     
-      <span><a href="week1.1.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="assignment1.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -177,6 +222,6 @@
 </html>
 
 <!--
-MkDocs version : 1.5.3
-Build Date UTC : 2024-04-23 09:13:37.157759+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2025-05-01 12:24:23.173309+00:00
 -->

@@ -88,12 +88,14 @@ def extract(url):
 
 
 print ('fetch urls')
-url = "https://sport050.nl/sportaanbieders/alle-aanbieders/"
+#url = "https://sport050.nl/sportaanbieders/alle-aanbieders/"
+url = 'https://web.archive.org/web/20200929153225/https://sport050.nl/sportaanbieders/alle-aanbieders/'
 s = open_url(url)
 reflist = read_hrefs(s)
 
 print ('getting sub-urls')
-sub_urls = [s for s in filter(lambda x: '<a href="/sportaanbieders' in str(x), reflist)]
+sub_urls = [s for s in reflist if 'https://sport050.nl/sportaanbieders/' in str(s)]
+print (sub_urls)
 sub_urls = sub_urls[3:]
 
 print ('extracting the data')

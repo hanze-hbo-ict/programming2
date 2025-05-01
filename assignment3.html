@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://bioinf.nl/~bbarnard/programming4/week2.6.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Bart Barnard" /><link rel="canonical" href="https://bioinf.nl/~bbarnard/programming4/assignment3.html" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Week 2.6: SE4ML (1) - Programming 4</title>
+    <title>3. List comprehensions and generators - Programming 4</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -16,9 +16,9 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Week 2.6: SE4ML (1)";
-        var mkdocs_page_input_path = "week2.6.md";
-        var mkdocs_page_url = "/~bbarnard/programming4/week2.6.html";
+        var mkdocs_page_name = "3. List comprehensions and generators";
+        var mkdocs_page_input_path = "assignment3.md";
+        var mkdocs_page_url = "/~bbarnard/programming4/assignment3.html";
       </script>
     
     <!--[if lt IE 9]>
@@ -48,19 +48,25 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.1.html">Multiple Class Interaction</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment1.html">1. Static code analysis</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.2.html">SOLID and design patterns</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment2.html">2. Multiple Class Interaction</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">3. List comprehensions and generators</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week1.4.html">List comprehensions and generators</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment4.html">4. Parallellisation</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="week2.2.html">Parallelisation</a>
+                <li class="toctree-l1"><a class="reference internal" href="assignment5.html">5. Final assignment</a>
                 </li>
               </ul>
       </div>
@@ -77,7 +83,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html" class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Week 2.6: SE4ML (1)</li>
+      <li class="breadcrumb-item active">3. List comprehensions and generators</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -86,29 +92,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="week-26-se4ml-1">Week 2.6: SE4ML (1)<a class="headerlink" href="#week-26-se4ml-1" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>During the plenary part, we have discussed some properties of good (and of bad) software. In the following assignments you are asked to use this information to analyze the code of one of your classrooms. Further, we will look at two articles that describe the necessity of Software Engineering practices for Machine Learning projects.</p>
-<h2 id="assignment-1-code-review">Assignment 1: code review<a class="headerlink" href="#assignment-1-code-review" title="Permanent link">&para;</a></h2>
-<p>For this assignment, you are given the code-base of one of your classmates. Analyse this code and write a small report with your findings. In this report, you should take the practices that have been described during the plenary part into consideration. </p>
-<p>For easy reference, the first four are repeated below – those metrics pertain to the more basic architectural setup of the code base, which in general will suffice.</p>
-<ol>
-<li>Write short units of code</li>
-<li>Write simple unites of code</li>
-<li>Write code once</li>
-<li>Keep unit iterfaces small</li>
-</ol>
-<p>Before this more concrete analyses, make sure you give a thorough desciption of the code base you received: what is it supposed to do, how well is it organized and how would it scale and be maintainable?</p>
-<p>Also, provide at least one suggestion for a not trivial refactor. Make sure you describe the code as it is and why you propose this refactor. In what way will this improve the code base in your opinion?</p>
-<h2 id="assignment-2">Assignment 2<a class="headerlink" href="#assignment-2" title="Permanent link">&para;</a></h2>
-<p>Read the article <a href="https://insights.sei.cmu.edu/blog/software-engineering-for-machine-learning-characterizing-and-detecting-mismatch-in-machine-learning-systems/">Software Engineering for Machine Learning: Characterizing and Detecting Mismatch in Machine-Learning Systems</a> by Lewis and Ozkaya (2021). Give a small summary of this article in which you describe the different types of mismatches the authors identify. Try to come up with concrete examples of these mismatches from your own projects and/or experience.</p>
-<p>Read the article <a href="https://insights.sei.cmu.edu/blog/tackling-collaboration-challenges-in-the-development-of-ml-enabled-systems/">Tackling Collaboration Challenges in the Development of ML-Enabled Systems</a> by Lewis (2023) and give a small summary of it. How do you envision your cooperation as (future) data scientist with software engineers? In what way will you make your code scalable, readable and maintainable? If you have ever put code in production, please descibe your experiences in doing so.</p>
-<ul>
-<li></li>
-</ul>
+                <h1 id="assignment-3-list-comprehensions-and-generators">Assignment 3: List comprehensions and generators<a class="headerlink" href="#assignment-3-list-comprehensions-and-generators" title="Permanent link">&para;</a></h1>
+<p>tbd</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="assignment2.html" class="btn btn-neutral float-left" title="2. Multiple Class Interaction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="assignment4.html" class="btn btn-neutral float-right" title="4. Parallellisation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -131,6 +123,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="assignment2.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="assignment4.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
