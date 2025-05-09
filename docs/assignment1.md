@@ -2,7 +2,7 @@
 
 During the plenary part, we discussed the necessity of static code analysis. We looked at the ontology of Python-applications, going from functions to classes to modules to systems. We also had a look at more high-level descriptions of code, using [the c4-model](https://c4model.com/) to describe any software system.
 
-For this assignment, you are required to write a small report on your findings of your findings on one of [the code bases listed below](#the-list). This report should be written in a file `report.md` in the corresponding directory (i.e. `assigment1/`). If you want to include images (which should be considered good practice), please put them in the directory `assignment1/imgs`. We suggest [plantuml](https://plantuml.com/) to create technical images.
+For this assignment, you are required to write a small report of your findings on one of [the code bases listed below](#the-list). This report should be written in a file `report.md` in the corresponding directory (i.e. `assigment1/`). If you want to include images (which should be considered good practice), please put them in the directory `assignment1/imgs`. We suggest [plantuml](https://plantuml.com/) to create technical images.
 
 ## Report
 
