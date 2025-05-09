@@ -62,7 +62,7 @@ Test your realisation with the two separate data files you have created – the 
 
 !!! Warning "Technical requirements"
 
-    - all files and classes should be *independent* of each other: they should adhere to [the SOLID-principles](week1.2.md).
+    - all files and classes should be *independent* of each other: they should adhere to the SOLID-principles.
     - the application should make use of a file `application.json` in which the following settings are present:
 
         - the location of the `input`-directory

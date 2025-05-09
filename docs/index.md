@@ -9,8 +9,8 @@ Specifically, the module contains the following subjects:
 
 weeknumber | subject(s)
 --- | ---
-1 | Refresh UML; SOLID; OO en design patterns
-2 | Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders
+1 | Introduction; SOLID; Static Code Analysis
+2 | OO: Classes and Objects; Constructors and Destructors; Object Lifecycle; Dunders
 3 | List Comprehensions; Generators; map-reduce; 
 4 | Parallellisation and async programming
 5 | Putting it all together
