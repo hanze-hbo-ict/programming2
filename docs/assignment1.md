@@ -10,7 +10,7 @@ Start your analysis with a short discription of the code-base: what it does, its
 
 Next, give a *qualitative description* of the code-base: how many LoC, how many functions/methods/classes, how many modules/packages/namespaces, etc.
 
-After this overview, you should look in some more depth to your code-base. Run at least one static analysis tool (e.g. `pylint`, `flake8`, `sonarqube`, `bandit`, `cloc`, or a language-specific alternative). Give attention to at least the following items:
+After this overview, you should look in some more depth to your code-base. You can make use of one of the technical tools [that are suggested on c4model.com/tooling](https://c4model.com/tooling). Also, run at least one static analysis tool (e.g. `pylint`, `flake8`, `sonarqube`, `bandit`, `cloc`, or a language-specific alternative). Give attention to at least the following items:
 
 - Complexity metrics for each function/method
 - Code smells
