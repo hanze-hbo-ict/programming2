@@ -58,6 +58,8 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">3. List comprehensions and generators</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#motif-discovery-via-custom-python-module-with-cli-support">Motif Discovery via Custom Python Module with CLI Support</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -93,7 +95,57 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="assignment-3-list-comprehensions-and-generators">Assignment 3: List comprehensions and generators<a class="headerlink" href="#assignment-3-list-comprehensions-and-generators" title="Permanent link">&para;</a></h1>
-<p>tbd</p>
+<h2 id="motif-discovery-via-custom-python-module-with-cli-support">Motif Discovery via Custom Python Module with CLI Support<a class="headerlink" href="#motif-discovery-via-custom-python-module-with-cli-support" title="Permanent link">&para;</a></h2>
+<p>Motif discovery, such as identifying overrepresented <strong>k-mers</strong>, is a core technique in genomic analysis. Your goal is to build a robust command-line tool that researchers can use to process DNA sequences, identify top motifs, and optionally filter them by GC content.</p>
+<p>Your code should eventually consist of the following files. The requirements are described sequentially below.</p>
+<ol>
+<li><code>motiftools.py</code> – your <strong>reusable module</strong></li>
+<li><code>motifcli.py</code> – a <strong>command-line interface script</strong></li>
+<li>Example data – a FASTA file or sequence list in <code>.txt</code> or <code>.csv</code></li>
+<li><code>README.md</code> – documentation, usage examples, and development notes</li>
+</ol>
+<p><strong>1. <code>motiftools.py</code>:</strong> Module Functions</p>
+<p>This file contains your module functions: </p>
+<ul>
+<li><code>kmer_generator(seq: str, k: int) -&gt; Generator[str, None, None]</code>:  yields all overlapping k-mers from the sequence.</li>
+</ul>
+<p>Example: <code>kmer_generator("ATGCG", 3)</code> yields <code>"ATG"</code>, <code>"TGC"</code>, <code>"GCG"</code></p>
+<ul>
+<li>
+<p><code>count_kmers(sequences: list[str], k: int) -&gt; dict[str, int]</code>: counts all k-mers across the input sequences.</p>
+</li>
+<li>
+<p><code>find_top_kmers(kmer_counts: dict[str, int], top_n: int = 10) -&gt; list[tuple[str, int]]</code>: returns the most frequent k-mers sorted by frequency.</p>
+</li>
+<li>
+<p><code>gc_content(seq: str) -&gt; float</code>: computes GC percentage of a sequence (use generator expressions).</p>
+</li>
+<li>
+<p><code>filter_kmers_by_gc(kmer_counts: dict[str, int], min_gc: float) -&gt; list[str]</code>: returns only those k-mers with GC content above the threshold.</p>
+</li>
+</ul>
+<p>Use <strong>generator expressions</strong>, <strong>list comprehensions</strong>, and good function design.</p>
+<p><strong>2. <code>motifcli.py</code>:</strong> Command-Line Interface</p>
+<p>This script should enable researchers to use your program using a nice comman line interface. It should have the following command line options:</p>
+<ul>
+<li><code>--input</code> (str): Path to a <code>.txt</code> file with one sequence per line (or FASTA)</li>
+<li><code>--k</code> (int): Length of the motif (k-mer)</li>
+<li><code>--top</code> (int): Number of top motifs to display</li>
+<li><code>--min-gc</code> (float, optional): Minimum GC content to filter motifs</li>
+</ul>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>motifcli.py<span class="w"> </span>--input<span class="w"> </span>sequences.txt<span class="w"> </span>--k<span class="w"> </span><span class="m">5</span><span class="w"> </span>--top<span class="w"> </span><span class="m">8</span><span class="w"> </span>--min-gc<span class="w"> </span><span class="m">50</span>
+</code></pre></div>
+<p>Should return something like:</p>
+<div class="highlight"><pre><span></span><code>Top<span class="w"> </span><span class="m">8</span><span class="w"> </span>motifs<span class="w"> </span><span class="o">(</span><span class="nv">k</span><span class="o">=</span><span class="m">5</span><span class="o">)</span>:
+ATGCG<span class="w"> </span>-<span class="w"> </span><span class="m">15</span>
+GCGAT<span class="w"> </span>-<span class="w"> </span><span class="m">13</span>
+...
+Filtered<span class="w"> </span>by<span class="w"> </span>GC<span class="w"> </span>content<span class="w"> </span>&gt;<span class="w"> </span><span class="m">50</span>%:
+ATGCG
+GCGAT
+...
+</code></pre></div>
+<p>Implement this module using <a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a>.</p>
               
             </div>
           </div><footer>
