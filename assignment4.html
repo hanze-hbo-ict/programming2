@@ -107,7 +107,8 @@
 </code></pre></div>
 <p>In this exercise, we are going to determine the fluctuation of CG-pairs over the genome of an organism. To do this, we need to count the amount of CG in (overlapping or non-overlapping) 'windows' (e.g. 10_000bp). We do this both in a sequential and in a non-sequential way, keeping track of the time it takes in both cases.</p>
 <h2 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h2>
-<p>Download <a href="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz">the genome of the <em>E.coli</em></a>. Write a Python-program that accepts a command-line argument <code>-w, --window_size</code> that represents the window-size 🤯 with which the program flows over the genome, returning the percentage of CG in that window:</p>
+<p>Download <a href="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz">the genome of the <em>E.coli</em></a>. Write a Python-program that accepts a command-line argument <code>-w, --window_size</code> that represents the window-size 🤯 with which the program flows over the genome, returning the percentage of CG in that window.</p>
+<p>Encapsulate this functionality in a class, that receives the window-size in its constructor. Make sure that when you print an instance of this class, the found percentages are printed. Also give the class the possibility to write the results to a csv-file. </p>
 <div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>python<span class="w"> </span>count.py<span class="w"> </span>-w<span class="w"> </span>10_000<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 <span class="m">00000</span>-10000:<span class="w"> </span><span class="m">0</span>.521
 <span class="m">10000</span>-20000:<span class="w"> </span><span class="m">0</span>.499
@@ -120,7 +121,7 @@
 <span class="m">80000</span>-90000:<span class="w"> </span><span class="m">0</span>.500
 &gt;
 </code></pre></div>
-<p>Write the results to a csv-file. </p>
+<p>Now create a second script that that creates several instances of this class with different values for the window-size (e.g. from 5_000 to 25_000). Do this both in a 'normal' way and with the use of the multiprocessor-module and determine the time each execution takes (you can use <code>time.time()</code> or make use of <a href="https://pypi.org/project/codetiming/">the module <code>codetimer</code></a>). Make a small visualisation of the results.</p>
               
             </div>
           </div><footer>
