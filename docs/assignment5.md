@@ -10,7 +10,7 @@ The application you are going to make, makes use of a *trained* machine learning
 
 ## Step 1: getting and transforming the data
 
-For this exercise, we are elaborating on the anomaly detection study case that [is part of the unsupervised part of DS3](https://github.com/fenna/BFVM23DATASCNC5/blob/main/Study_Cases/Study_Case_Anomaly_Detection.ipynb). Head over to that notebook, study its contents and download the accompanying dataset. You can also find the dataset at Kaggle: https://www.kaggle.com/datasets/nphantawee/pump-sensor-data
+For this exercise, we are elaborating on the anomaly detection study case that [is part of the unsupervised part of DS3](files/Study_Case_Anomaly_Detection.ipynb). Head over to that notebook, study its contents and download the accompanying dataset. You can also find the dataset at Kaggle: https://www.kaggle.com/datasets/nphantawee/pump-sensor-data
 
 !!! Info "Use your own dataset"
     You can also use your own dataset, but only if it fulfills the following requirements:
@@ -32,7 +32,7 @@ Using the first of the three splits described above, train one of the models fro
 !!! Warning "Transform only the training-data"
     For this exercise, it is *imparitive* that you perform the data-transformations *after* you split the original data and *only* on the training-data. In this way, we can correctly simulate the entering of future data in our pipeline.
 
-Study the method `plot_sensor_anomolies(sensor, name)` that you can find [in the notebook](https://github.com/fenna/BFVM23DATASCNC5/blob/main/Study_Cases/Study_Case_Anomaly_Detection.ipynb). In the current setup, this method can only work if the dataframe `df` is defined within the scope of the complete notebook (so only if `df` is a *global variable*). Refactor this method so that is *independent* of any global variables (global variables are bad news in general). Also, change its functionality so that it *returns* the plot instead of displaying it.
+Study the method `plot_sensor_anomolies(sensor, name)` that you can find [in the notebook](files/Study_Case_Anomaly_Detection.ipynb). In the current setup, this method can only work if the dataframe `df` is defined within the scope of the complete notebook (so only if `df` is a *global variable*). Refactor this method so that is *independent* of any global variables (global variables are bad news in general). Also, change its functionality so that it *returns* the plot instead of displaying it.
 
 
 ## Step 4: listening for new data
