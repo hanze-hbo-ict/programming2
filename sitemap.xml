@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/index.html</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-11</lastmod>
     </url>
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/assignment1.html</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-11</lastmod>
     </url>
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/assignment2.html</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-11</lastmod>
     </url>
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/assignment3.html</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-11</lastmod>
     </url>
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/assignment4.html</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-11</lastmod>
     </url>
     <url>
          <loc>https://bioinf.nl/~bbarnard/programming4/assignment5.html</loc>
-         <lastmod>2025-06-05</lastmod>
+         <lastmod>2025-06-11</lastmod>
+    </url>
+    <url>
+         <loc>https://bioinf.nl/~bbarnard/programming4/files/Study_Case_Anomaly_Detection.html</loc>
+         <lastmod>2025-06-11</lastmod>
     </url>
 </urlset>
