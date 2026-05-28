@@ -96,37 +96,55 @@
               
                 <h1 id="assignment-3-list-comprehensions-and-generators">Assignment 3: List comprehensions and generators<a class="headerlink" href="#assignment-3-list-comprehensions-and-generators" title="Permanent link">&para;</a></h1>
 <h2 id="motif-discovery-via-custom-python-module-with-cli-support">Motif Discovery via Custom Python Module with CLI Support<a class="headerlink" href="#motif-discovery-via-custom-python-module-with-cli-support" title="Permanent link">&para;</a></h2>
-<p>Motif discovery, such as identifying overrepresented <strong>k-mers</strong>, is a core technique in genomic analysis. Your goal is to build a robust command-line tool that researchers can use to process DNA sequences, identify top motifs, and optionally filter them by GC content.</p>
+<p>Counting <em>k-mers</em> (substrings of length <code>k</code> in DNA sequence data) is an essential component of many methods in bioinformatics, including for genome and transcriptome assembly, for metagenomic sequencing, and for error correction of sequence reads. </p>
+<p>Motif discovery, such as identifying overrepresented <em>k-mers</em>, is a core technique in genomic analysis. Your goal is to build a robust command-line tool that researchers can use to process DNA sequences, identify top motifs, and optionally filter them by GC content.</p>
 <p>Your code should eventually consist of the following files. The requirements are described sequentially below.</p>
 <ol>
-<li><code>motiftools.py</code> – your <strong>reusable module</strong></li>
-<li><code>motifcli.py</code> – a <strong>command-line interface script</strong></li>
+<li><code>motiftools.py</code> – your <em>reusable module</em></li>
+<li><code>motifcli.py</code> – a <em>command-line interface script</em></li>
 <li>Example data – a FASTA file or sequence list in <code>.txt</code> or <code>.csv</code></li>
 <li><code>README.md</code> – documentation, usage examples, and development notes</li>
 </ol>
 <p><strong>1. <code>motiftools.py</code>:</strong> Module Functions</p>
-<p>This file contains your module functions: </p>
-<ul>
-<li><code>kmer_generator(seq: str, k: int) -&gt; Generator[str, None, None]</code>:  yields all overlapping k-mers from the sequence.</li>
-</ul>
-<p>Example: <code>kmer_generator("ATGCG", 3)</code> yields <code>"ATG"</code>, <code>"TGC"</code>, <code>"GCG"</code></p>
+<p>Make a class <code>MotifTools</code> which contains the functionality that is described below.</p>
 <ul>
 <li>
-<p><code>count_kmers(sequences: list[str], k: int) -&gt; dict[str, int]</code>: counts all k-mers across the input sequences.</p>
+<p>When you initialize an instance of <code>MotifTools</code> you need to give it a DNA-sequence and a value for <span class="arithmatex">\(k\)</span>.</p>
 </li>
 <li>
-<p><code>find_top_kmers(kmer_counts: dict[str, int], top_n: int = 10) -&gt; list[tuple[str, int]]</code>: returns the most frequent k-mers sorted by frequency.</p>
-</li>
-<li>
-<p><code>gc_content(seq: str) -&gt; float</code>: computes GC percentage of a sequence (use generator expressions).</p>
-</li>
-<li>
-<p><code>filter_kmers_by_gc(kmer_counts: dict[str, int], min_gc: float) -&gt; list[str]</code>: returns only those k-mers with GC content above the threshold.</p>
+<p>When you <em>iterate</em> over this instance, you receive the all the overlapping k-mers from the sequence. Make use of <a href="https://refactoring.guru/design-patterns/iterator">the <em>iterator-pattern</em></a> and delegate the iteration to a seperate class.</p>
 </li>
 </ul>
-<p>Use <strong>generator expressions</strong>, <strong>list comprehensions</strong>, and good function design.</p>
+<div class="highlight"><pre><span></span><code><span class="n">tools</span> <span class="o">=</span> <span class="n">MotifTools</span><span class="p">(</span><span class="s2">&quot;ATGCG&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tools</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="c1"># result:</span>
+<span class="n">ATG</span>
+<span class="n">TGC</span>
+<span class="n">GCG</span>
+</code></pre></div>
+<ul>
+<li>Provide your <code>MotifTools</code> with a method <code>count</code>, which returns a <code>dict[str, int]</code>, that represents all the <em>k-mers</em> across the input sequence. Make use of <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict">python's <code>defaultdict</code></a>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">tools</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+
+<span class="c1"># result:</span>
+<span class="n">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="err">&#39;</span><span class="nc">int</span><span class="s1">&#39;&gt;, {&#39;</span><span class="n">ATG</span><span class="s1">&#39;: 1, &#39;</span><span class="n">TGC</span><span class="s1">&#39;: 1, &#39;</span><span class="n">GCG</span><span class="s1">&#39;: 1})</span>
+</code></pre></div>
+<ul>
+<li>
+<p>Make a method <code>find_top_kmers(top_n = 10)</code>, that returns the most frequent <em>k-mers</em> sorted by frequency. Return only the <code>top_n</code> number of <em>k_mers</em>. Make a seperate class for this and use the results of the <code>count</code>-method that you made in the previous step.</p>
+</li>
+<li>
+<p>Make a method <code>gc_content()</code> that computes <a href="https://en.wikipedia.org/wiki/GC-content">the GC percentage</a> of the sequence. Make use generator expressions.</p>
+</li>
+<li>
+<p>Finally, make a method <code>filter_kmers_by_gc(min_gc)</code> that returns a list with only those <em>k-mers</em> that have a GC content above the given threshold <code>min_gc</code>.</p>
+</li>
+</ul>
 <p><strong>2. <code>motifcli.py</code>:</strong> Command-Line Interface</p>
-<p>This script should enable researchers to use your program using a nice comman line interface. It should have the following command line options:</p>
+<p>Make a script <code>motifcli.py</code> that enables researchers to use your program using a nice command line interface. It should have the following command line options:</p>
 <ul>
 <li><code>--input</code> (str): Path to a <code>.txt</code> file with one sequence per line (or FASTA)</li>
 <li><code>--k</code> (int): Length of the motif (k-mer)</li>
