@@ -46,7 +46,7 @@ defaultdict(<class 'int'>, {'ATG': 1, 'TGC': 1, 'GCG': 1})
 
 - Make a method `gc_content()` that computes [the GC percentage](https://en.wikipedia.org/wiki/GC-content) of the sequence. Make use generator expressions.
 
-- Finally, make a method `filter_kmers_by_gc(min_gc)` that returns a list with only those *k-mers* that have a GC content above the given threshold `min_gc`.
+- Finally, make a method `filter_kmers_by_gc(min_gc)` that returns a list with only those *k-mers* that have a GC content above the given threshold `min_gc`. Make use of a list-comprehension.
 
 
 __2. `motifcli.py`:__ Command-Line Interface
