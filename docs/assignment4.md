@@ -18,9 +18,9 @@ In this exercise, we are going to determine the fluctuation of CG-pairs over the
 
 ## Assignment
 
-Download [the genome of the *E.coli*](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz). Write a Python-program that accepts a command-line argument `-w, --window_size` that represents the window-size 🤯 with which the program flows over the genome, returning the percentage of CG in that window.
+Download [the genome of the *E.coli*](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz). Write a Python-program that accepts a command-line argument `-w, --window_size` that represents (drumm roll) the window-size (🤯) with which the program flows over the genome, returning the percentage of CG in that window.
 
-Encapsulate this functionality in a class, that receives the window-size in its constructor. Make sure that when you print an instance of this class, the found percentages are printed. Also give the class the possibility to write the results to a csv-file. 
+Encapsulate this functionality in a class that receives the window-size in its constructor. Make sure that when you print an instance of this class, the found percentages are printed. Also give the class the possibility to write the results to a csv-file. 
 
 ```shell
 > python count.py -w 10_000 | head

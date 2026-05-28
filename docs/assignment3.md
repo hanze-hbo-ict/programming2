@@ -1,42 +1,57 @@
 # Assignment 3: List comprehensions and generators
 
-
 ## Motif Discovery via Custom Python Module with CLI Support
 
-Motif discovery, such as identifying overrepresented **k-mers**, is a core technique in genomic analysis. Your goal is to build a robust command-line tool that researchers can use to process DNA sequences, identify top motifs, and optionally filter them by GC content.
+Counting *k-mers* (substrings of length `k` in DNA sequence data) is an essential component of many methods in bioinformatics, including for genome and transcriptome assembly, for metagenomic sequencing, and for error correction of sequence reads. 
+
+Motif discovery, such as identifying overrepresented *k-mers*, is a core technique in genomic analysis. Your goal is to build a robust command-line tool that researchers can use to process DNA sequences, identify top motifs, and optionally filter them by GC content.
 
 Your code should eventually consist of the following files. The requirements are described sequentially below.
 
-1. `motiftools.py` – your **reusable module**
-2. `motifcli.py` – a **command-line interface script**
+1. `motiftools.py` – your *reusable module*
+2. `motifcli.py` – a *command-line interface script*
 3. Example data – a FASTA file or sequence list in `.txt` or `.csv`
 4. `README.md` – documentation, usage examples, and development notes
 
 
 __1. `motiftools.py`:__ Module Functions
 
-This file contains your module functions: 
+Make a class `MotifTools` which contains the functionality that is described below.
 
-- `kmer_generator(seq: str, k: int) -> Generator[str, None, None]`:  yields all overlapping k-mers from the sequence.
+- When you initialize an instance of `MotifTools` you need to give it a DNA-sequence and a value for $k$.
 
-Example: `kmer_generator("ATGCG", 3)` yields `"ATG"`, `"TGC"`, `"GCG"`
+- When you *iterate* over this instance, you receive the all the overlapping k-mers from the sequence. Make use of [the *iterator-pattern*](https://refactoring.guru/design-patterns/iterator) and delegate the iteration to a seperate class.
 
+```python
+tools = MotifTools("ATGCG", 3)
+for item in tools:
+    print(item)
 
-- `count_kmers(sequences: list[str], k: int) -> dict[str, int]`: counts all k-mers across the input sequences.
+# result:
+ATG
+TGC
+GCG
+```
 
+- Provide your `MotifTools` with a method `count`, which returns a `dict[str, int]`, that represents all the *k-mers* across the input sequence. Make use of [python's `defaultdict`](https://docs.python.org/3/library/collections.html#collections.defaultdict).
 
-- `find_top_kmers(kmer_counts: dict[str, int], top_n: int = 10) -> list[tuple[str, int]]`: returns the most frequent k-mers sorted by frequency.
+```python
+print(tools.count())
 
+# result:
+defaultdict(<class 'int'>, {'ATG': 1, 'TGC': 1, 'GCG': 1})
+```
 
-- `gc_content(seq: str) -> float`: computes GC percentage of a sequence (use generator expressions).
+- Make a method `find_top_kmers(top_n = 10)`, that returns the most frequent *k-mers* sorted by frequency. Return only the `top_n` number of *k_mers*. Make a seperate class for this and use the results of the `count`-method that you made in the previous step.
 
-- `filter_kmers_by_gc(kmer_counts: dict[str, int], min_gc: float) -> list[str]`: returns only those k-mers with GC content above the threshold.
+- Make a method `gc_content()` that computes [the GC percentage](https://en.wikipedia.org/wiki/GC-content) of the sequence. Make use generator expressions.
 
-Use **generator expressions**, **list comprehensions**, and good function design.
+- Finally, make a method `filter_kmers_by_gc(min_gc)` that returns a list with only those *k-mers* that have a GC content above the given threshold `min_gc`.
+
 
 __2. `motifcli.py`:__ Command-Line Interface
 
-This script should enable researchers to use your program using a nice comman line interface. It should have the following command line options:
+Make a script `motifcli.py` that enables researchers to use your program using a nice command line interface. It should have the following command line options:
 
 - `--input` (str): Path to a `.txt` file with one sequence per line (or FASTA)
 - `--k` (int): Length of the motif (k-mer)
